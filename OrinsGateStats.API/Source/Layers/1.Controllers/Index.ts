@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { DependencyContainer } from 'tsyringe';
-// import { PersonController } from './PersonController';
+import { CharacterController } from './CharacterController';
 
 export default function ApplyControllers(dicontainer: DependencyContainer, router: Router) {
-   // var personController = dicontainer.resolve<PersonController>(PersonController);
+   var characterController = dicontainer.resolve<CharacterController>(CharacterController);
 }

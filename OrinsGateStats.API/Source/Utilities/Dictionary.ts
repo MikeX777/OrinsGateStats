@@ -1,12 +1,12 @@
 export class Dictionary<TKey, TValue> {
-    private keys: TKey[];
-    private values: TValue[];
+    private keys: TKey[] = [];
+    private values: TValue[] = [];
 
     private count: number = 0;
 
     constructor();
     constructor(keys?: TKey[], values?: TValue[]) {
-        if (keys !== null) {
+        if (keys !== null && keys !== undefined) {
             if (keys.length === values.length) {
                 this.keys = keys;
                 this.values = values;
@@ -15,12 +15,11 @@ export class Dictionary<TKey, TValue> {
     }
  
     public ContainsKey(key: TKey): boolean {
-        this.keys.forEach(dictionaryKey => {
-            if (dictionaryKey === key) {
-                return true;
-            }
-        });
-        return false;
+        let returnValue = false;
+        if (this.keys.indexOf(key) !== -1) {
+            returnValue = true;
+        }
+        return returnValue;
     }
  
     public Count(): number {

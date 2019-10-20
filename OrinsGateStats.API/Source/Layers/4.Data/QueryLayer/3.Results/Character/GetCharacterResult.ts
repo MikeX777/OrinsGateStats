@@ -1,4 +1,4 @@
-import { IResult } from "../../../../../Infrastructure/Interfaces/IResult";
+import { IResult } from '../../../../../Infrastructure/Interfaces/IResult';
 
 export class GetCharacterResult implements IResult {
     ID: number;

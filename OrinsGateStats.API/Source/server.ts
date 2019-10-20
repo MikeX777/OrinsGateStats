@@ -1,21 +1,22 @@
 ﻿import http from 'http';
 import express from 'express';
 import 'reflect-metadata';
-import controllerContainer from './Infrastructure/DependancyInversion/Container'
+import DIContainer from './Infrastructure/DependancyInversion/Container'
 import { createConnection } from 'typeorm';
 import { ApplyMiddleware, applyRoutes } from './Utilities';
 import Middleware from './Middleware';
 import ErrorHandlers  from './Middleware/ErrorHandlers';
 import ApplyControllers from './Layers/1.Controllers';
+import { RegisterQueries } from './Infrastructure/DependancyInversion/Builder';
 
 
 const router = express();
-controllerContainer.container.register('IRouter', {
+DIContainer.container.register('IRouter', {
     useValue: router
 });
 
 ApplyMiddleware(Middleware, router);
-ApplyControllers(controllerContainer.container, router);
+ApplyControllers(DIContainer.container, router);
 const { PORT = 5000 } = process.env;
 const server = http.createServer(router);
 

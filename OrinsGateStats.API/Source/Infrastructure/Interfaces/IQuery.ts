@@ -1,2 +1,3 @@
-export interface IQuery<TResult> {
+export interface IQuery {
+    Key: string;
 }

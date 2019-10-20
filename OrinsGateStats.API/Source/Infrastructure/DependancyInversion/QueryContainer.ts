@@ -1,19 +1,21 @@
-import { IQuery } from "../../Infrastructure/Interfaces/IQuery";
-import { Dictionary } from "../../Utilities/Dictionary";
-import { IResult } from "../../Infrastructure/Interfaces/IResult";
-import { QueryHandlerBase } from "../../Infrastructure/BaseClasses/QueryHandlerBase";
-import { GetCharacterQuery } from "../../Layers/4.Data/QueryLayer/1.Queries/Character/GetCharacterQuery";
-import { GetCharacterResult } from "../../Layers/4.Data/QueryLayer/3.Results/Character/GetCharacterResult";
-import { GetCharacterQueryHandler } from "../../Layers/4.Data/QueryLayer/2.QueryHandlers/Character/GetCharacterQueryHandler";
+import { IQuery } from '../../Infrastructure/Interfaces/IQuery';
+import { Dictionary } from '../../Utilities/Dictionary';
+import { IResult } from '../../Infrastructure/Interfaces/IResult';
+import { QueryHandlerBase } from '../../Infrastructure/BaseClasses/QueryHandlerBase';
 
 export class QueryContainer {
     
-    private containerDictionary: Dictionary<IQuery<IResult>, QueryHandlerBase<IQuery<IResult>, IResult>> =
-        new Dictionary<IQuery<IResult>, QueryHandlerBase<IQuery<IResult>, IResult>>();
+    private containerDictionary: Dictionary<string, QueryHandlerBase<IQuery, IResult>> =
+        new Dictionary<string, QueryHandlerBase<IQuery, IResult>>();
 
-    constructor() {
-        this.containerDictionary.Add(new GetCharacterQuery(), new GetCharacterQueryHandler())      
+    public Register(queryName: string, handler: QueryHandlerBase<IQuery, IResult>) {
+        this.containerDictionary.Add(queryName, handler);
     }
 
-    // public TResult Execute<TQuery, TResult>
+    public async ExecuteQuery<TQuery extends IQuery, TResult extends IResult>(query: TQuery): Promise<TResult> {
+        if (this.containerDictionary.ContainsKey(query.Key)) {
+            let handler = this.containerDictionary.Item(query.Key);
+            return handler.Execute(query) as Promise<TResult>;
+        }
+    }
 }

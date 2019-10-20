@@ -1,9 +1,10 @@
-import { IResult } from "../Interfaces/IResult";
+import { IResult } from '../Interfaces/IResult';
+import { QueryContainer } from '../DependancyInversion/QueryContainer';
 
 export abstract class ModelBase<TIdentifier> {
     ID: TIdentifier;
 
-    constructor(id: TIdentifier, result?: IResult) {
+    constructor(id: TIdentifier, queryContainer: QueryContainer, result?: IResult) {
         this.ID = id;
 
         if (result !== null) {
@@ -12,7 +13,7 @@ export abstract class ModelBase<TIdentifier> {
 
     }
 
-    private AssignResult(result: IResult) {
+    protected AssignResult(result: IResult) {
         Object.assign<this, IResult>(this, result);
     }
 }

@@ -1,9 +1,14 @@
 import { container } from 'tsyringe';
-import { PersonService } from '../../2.Services';
+import { RegisterQueries as BuildQueryContainer } from './Builder';
+import { CharacterService } from '../../Layers/2.Services/Index';
 
+const queryContainer = BuildQueryContainer();
+container.register('QueryContainer', {
+    useValue: queryContainer
+});
 
-container.register('IPersonService', {
-   useClass: PersonService 
+container.register('ICharacterService', {
+   useValue: container.resolve<CharacterService>(CharacterService)
 });
 
 
