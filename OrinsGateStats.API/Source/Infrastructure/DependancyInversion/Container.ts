@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import { RegisterQueries as BuildQueryContainer } from './Builder';
+import { BuildQueryContainer } from './Builder';
 import { CharacterService } from '../../Layers/2.Services/Index';
 
 const queryContainer = BuildQueryContainer();

@@ -6,7 +6,7 @@ export class Dictionary<TKey, TValue> {
 
     constructor();
     constructor(keys?: TKey[], values?: TValue[]) {
-        if (keys !== null && keys !== undefined) {
+        if (keys !== null && keys !== undefined && values !== undefined) {
             if (keys.length === values.length) {
                 this.keys = keys;
                 this.values = values;

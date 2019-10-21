@@ -17,7 +17,7 @@ export class CharacterController  {
     }
 
     async getPersons(request: Request, response: Response) {
-        await this.characterService.GetCharacterDisplay(parseInt(request.params['characterID']));
-        response.status(200).send('hello');
+        let dashboard = await this.characterService.GetCharacterDisplay(parseInt(request.params['characterID']));
+        response.status(200).send(dashboard);
     }
 }

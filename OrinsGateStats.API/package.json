@@ -2,9 +2,9 @@
   "name": "orins_gate_stats.api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "Source/Server.ts",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
+    "dev": "tsc-watch --onSuccess \"node ./dist/Server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,6 +23,6 @@
     "tsc-watch": "^4.0.0",
     "tsyringe": "^3.4.0",
     "typeorm": "^0.2.20",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.0-beta"
   }
 }

@@ -1,11 +1,12 @@
 import { QueryContainer } from "./QueryContainer";
-import { GetCharacterQuery } from "../../Layers/4.Data/QueryLayer/1.Queries/Character/GetCharacterQuery";
 import { GetCharacterQueryHandler } from "../../Layers/4.Data/QueryLayer/2.QueryHandlers/Character/GetCharacterQueryHandler";
+import { GetRaceQueryHandler } from "../../Layers/4.Data/QueryLayer/2.QueryHandlers/Race/GetRaceQueryHandler";
 
-export function RegisterQueries(): QueryContainer {
+export function BuildQueryContainer(): QueryContainer {
     let queryContainer = new QueryContainer();
 
-    queryContainer.Register(new GetCharacterQuery().Key, new GetCharacterQueryHandler());
+    queryContainer.Register('GetCharacterQuery', new GetCharacterQueryHandler());
+    queryContainer.Register('GetRaceQuery', new GetRaceQueryHandler());
 
     return queryContainer;
 }
