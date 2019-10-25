@@ -8,7 +8,7 @@ import { TBShield } from './TBShield';
 import { TBCharacterLanguage } from './TBCharacterLanguage';
 import { TBCharacterFeat } from './TBCharacterFeat';
 import { TBCharacterTrick } from './TBCharacterTrick';
-import { TBCharacterPower } from './CharacterPower';
+import { TBCharacterPower } from './TBCharacterPower';
 
 @Entity()
 export class TBCharacter {

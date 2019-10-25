@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { TBCharacterPower } from "./CharacterPower";
+import { TBCharacterPower } from "./TBCharacterPower";
 
 @Entity()
 export class TBPower {
