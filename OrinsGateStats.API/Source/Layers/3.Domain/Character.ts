@@ -7,6 +7,7 @@ import { LazyLoad } from '../../Infrastructure/LazyLoad';
 import { Race } from './Race';
 import { GetRaceQuery } from '../4.Data/QueryLayer/1.Queries/Race/GetRaceQuery';
 import { GetRaceResult } from '../4.Data/QueryLayer/3.Results/Race/GetRaceResult';
+import { CharacterDashboradDto } from '../2.Services/DtoModels/Character/CharacterDashboardDto';
 
 export class Character extends ModelBase<number> {
 
@@ -51,6 +52,42 @@ export class Character extends ModelBase<number> {
         this._lazyRace = new LazyLoad(this.LoadRace.bind(this));
     }
 
+    public async BuildCharacterDashboard(): Promise<CharacterDashboradDto> {
+
+        let dashboard: CharacterDashboradDto = {
+            ID: this.ID,
+            CharacterName: this.Name,
+            Level: this.MaxHitDice,
+            Conscious: this.Conscious,
+            Alive: this.Alive,
+            MaxHealth: this.MaxHealth,
+            CurrentHealth: this.CurrentHealth,
+            ArmorClass: this.ArmorClass,
+            Strength: this.Strength,
+            StrengthModifier: Math.floor((this.Strength - 10) / 2),
+            Dexterity: this.Dexterity,
+            DexterityModifier: Math.floor((this.Dexterity - 10) / 2),
+            Constitution: this.Constitution,
+            ConstitutionModifier: Math.floor((this.Constitution - 10) / 2),
+            Intelligence: this.Intelligence,
+            IntelligenceModifier: Math.floor((this.Intelligence - 10) / 2),
+            Wisdom: this.Wisdom,
+            WisdomModifier: Math.floor((this.Wisdom - 10) / 2),
+            Charisma: this.Charisma,
+            CharismaModifier: Math.floor((this.Charisma - 10) / 2),
+            ProficiencyBonus: this.ProficiencyBonus,
+            Speed: this.Speed,
+            Copper: this.Copper,
+            Silver: this.Silver,
+            Gold: this.Gold,
+            MaxHitDice: this.MaxHitDice,
+            CurrentHitDice: this.CurrentHitDice,
+            RaceName: (await this.Race())?.Name ?? ''
+        }
+
+        return null;
+    }
+
     public async Retrieve(): Promise<boolean> {
         if (!this.retrieved) {
             let result = await this.queryContainer.ExecuteQuery<GetCharacterQuery, GetCharacterResult>(
@@ -66,7 +103,6 @@ export class Character extends ModelBase<number> {
     }
 
     private async LoadRace(): Promise<void> {
-        console.log('I am here');
         let result = await this.queryContainer.ExecuteQuery<GetRaceQuery, GetRaceResult>(
             new GetRaceQuery(this.RaceID)
         );
