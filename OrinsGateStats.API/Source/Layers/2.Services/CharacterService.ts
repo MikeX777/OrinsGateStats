@@ -45,7 +45,7 @@ export class CharacterService implements ICharacterService {
             Gold: character.Gold,
             MaxHitDice: character.MaxHitDice,
             CurrentHitDice: character.CurrentHitDice,
-            RaceName: (await character.Race()).Name
+            RaceName: (await character.Race())?.Name ?? ''
         }
 
         return dashboard;

@@ -1,8 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId, OneToMany } from 'typeorm';
 import { TBRace } from './TBRace';
 import { TBCharacterClass } from './TBCharacterClass';
 import { TBCampaign } from './TBCampaign';
 import { TBPlayer } from './TBPlayer';
+import { TBArmor } from './TBArmor';
+import { TBShield } from './TBShield';
+import { TBCharacterLanguage } from './TBCharacterLanguage';
+import { TBCharacterFeat } from './TBCharacterFeat';
+import { TBCharacterTrick } from './TBCharacterTrick';
+import { TBCharacterPower } from './CharacterPower';
 
 @Entity()
 export class TBCharacter {
@@ -24,9 +30,6 @@ export class TBCharacter {
 
     @Column()
     CurrentHealth: number;
-
-    @Column()
-    ArmorClass: number;
 
     @Column()
     Strength: number;
@@ -67,6 +70,9 @@ export class TBCharacter {
     @Column()
     CurrentHitDice: number;
 
+    @Column()
+    Exhaustion: number;
+
     @ManyToOne(() => TBRace, race => race.Characters)
     Race: TBRace;
 
@@ -90,4 +96,28 @@ export class TBCharacter {
 
     @RelationId((Character: TBCharacter) => Character.Player)
     PlayerID: number;
+
+    @ManyToOne(() => TBArmor, armor => armor.Characters)
+    Armor: TBArmor;
+
+    @RelationId((Character: TBCharacter) => Character.Armor)
+    ArmorID: number;
+
+    @ManyToOne(() => TBShield, shield => shield.Characters)
+    Shield: TBShield;
+
+    @RelationId((Character: TBCharacter) => Character.Shield)
+    ShieldID: number;
+
+    @OneToMany(() => TBCharacterLanguage, characterLanguage => characterLanguage.Character)
+    CharacterLanguages: TBCharacterLanguage[];
+
+    @OneToMany(() => TBCharacterFeat, characterFeat => characterFeat.Character)
+    CharacterFeats: TBCharacterFeat[];
+
+    @OneToMany(() => TBCharacterTrick, characterTrick => characterTrick.Character)
+    CharacterTricks: TBCharacterTrick[];
+
+    @OneToMany(() => TBCharacterPower, characterPower => characterPower.Character)
+    CharacterPowers: TBCharacterPower[];
 }
