@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { ICharacterService } from './Interfaces/Index';
-import { Character } from '../3.Domain/Character';
+import { Character } from '../3.Domain/Character/Character';
 import { QueryContainer } from '../../Infrastructure/DependancyInversion/QueryContainer';
 import { CharacterDashboradDto } from './DtoModels/Character/CharacterDashboardDto';
 

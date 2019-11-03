@@ -26,6 +26,9 @@ export class TBCharacter {
     Alive: boolean;
 
     @Column()
+    Stable: boolean;
+
+    @Column()
     MaxHealth: number;
 
     @Column()

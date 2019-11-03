@@ -17,7 +17,6 @@ export class GetCharacterQueryHandler extends QueryHandlerBase<GetCharacterQuery
             Alive: character.Alive,
             MaxHealth: character.MaxHealth,
             CurrentHealth: character.CurrentHealth,
-            ArmorClass: character.ArmorClass,
             Strength: character.Strength,
             Dexterity: character.Dexterity,
             Constitution: character.Constitution,
@@ -31,10 +30,13 @@ export class GetCharacterQueryHandler extends QueryHandlerBase<GetCharacterQuery
             Gold: character.Silver,
             MaxHitDice: character.MaxHitDice,
             CurrentHitDice: character.CurrentHitDice,
+            Exhaustion: character.Exhaustion,
             RaceID: character.RaceID,
             CharacterClassID: character.CharacterClassID,
             CampaignID: character.CampaignID,
-            PlayerID: character.PlayerID
+            PlayerID: character.PlayerID,
+            ArmorID: character.ArmorID,
+            ShieldID: character.ShieldID
         };
         return result;
     }

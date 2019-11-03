@@ -1,4 +1,4 @@
-import { Character } from "../../3.Domain/Character";
+import { Character } from "../../3.Domain/Character/Character";
 import { CharacterDashboradDto } from "../DtoModels/Character/CharacterDashboardDto";
 
 

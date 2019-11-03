@@ -4,6 +4,7 @@ export class CharacterDashboradDto {
     Level: number;
     Conscious: boolean;
     Alive: boolean;
+    Stable: boolean;
     MaxHealth: number;
     CurrentHealth: number;
     ArmorClass: number;
@@ -26,8 +27,9 @@ export class CharacterDashboradDto {
     Gold: number;
     MaxHitDice: number;
     CurrentHitDice: number;
+    Exhaustion: number;
+    CampaignName: string;
+    CharacterClassName: string;
+    PlayerName: string;
     RaceName: string;
-    // CharacterClassName: string;
-    // CampaignName: number;
-    // PlayerName: number;
 }

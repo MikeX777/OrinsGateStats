@@ -7,7 +7,6 @@ export class GetCharacterResult implements IResult {
     Alive: boolean;
     MaxHealth: number;
     CurrentHealth: number;
-    ArmorClass: number;
     Strength: number;
     Dexterity: number;
     Constitution: number;
@@ -21,8 +20,11 @@ export class GetCharacterResult implements IResult {
     Gold: number;
     MaxHitDice: number;
     CurrentHitDice: number;
+    Exhaustion: number;
     RaceID: number;
     CharacterClassID: number;
     CampaignID: number;
     PlayerID: number;
+    ArmorID: number;
+    ShieldID: number;
 }
