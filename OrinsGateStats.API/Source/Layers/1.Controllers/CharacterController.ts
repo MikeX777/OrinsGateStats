@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import {injectable, inject} from "tsyringe";
+import {injectable, inject} from 'tsyringe';
 import { ICharacterService } from '../2.Services/Interfaces/Index';
 
 

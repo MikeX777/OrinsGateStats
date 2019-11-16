@@ -1,5 +1,4 @@
-import { Character } from "../../3.Domain/Character/Character";
-import { CharacterDashboradDto } from "../DtoModels/Character/CharacterDashboardDto";
+import { CharacterDashboradDto } from '../DtoModels/Character/CharacterDashboardDto';
 
 
 export interface ICharacterService {
