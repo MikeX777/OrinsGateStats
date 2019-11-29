@@ -7,6 +7,22 @@ export class RegisterPlayerCommandHandler implements CommandHandlerBase<Register
     public async Execute(command: RegisterPlayerCommand): Promise<number> {
         let playerRepository = await getRepository(TBPlayer);
 
+        const playerExists = await playerRepository.findOne({
+            where: [
+                {
+                    Username: command.Username
+                }, {
+                    Username: command.Email
+                }, {
+                    Email: command.Email
+                }
+            ]
+        });
+
+        if (playerExists !== undefined) {
+            return -1;
+        }
+
         let newPlayer = new TBPlayer();
         newPlayer.FirstName = command.FirstName;
         newPlayer.LastName = command.LastName;

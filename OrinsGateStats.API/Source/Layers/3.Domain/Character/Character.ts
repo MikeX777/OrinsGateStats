@@ -56,7 +56,7 @@ export class Character extends ModelBase<number> {
             Stable: this.Stable,
             MaxHealth: this.MaxHealth,
             CurrentHealth: this.CurrentHealth,
-            ArmorClass: 8 + this.Shield?.Bonus + this.Armor.Bonus,
+            ArmorClass: 8 + this.Shield?.Bonus + this.Armor?.Bonus,
             Strength: this.Strength,
             StrengthModifier: Math.floor((this.Strength - 10) / 2),
             Dexterity: this.Dexterity,

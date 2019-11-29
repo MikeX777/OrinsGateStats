@@ -1,14 +1,14 @@
 import { IResult } from '../../../../../Infrastructure/Interfaces/IResult';
-import { CharacterDomainRaceResult } from '../DomainSubResults/CharacterDomainRaceResult';
-import { CharacterDomainCharacterClassResult } from '../DomainSubResults/CharacterDomainCharacterClassResult';
-import { CharacterDomainCampaignResult } from '../DomainSubResults/CharacterDomainCampaignResult';
-import { CharacterDomainPlayerResult } from '../DomainSubResults/CharacterDomainPlayerResult';
-import { CharacterDomainArmorResult } from '../DomainSubResults/CharacterDomainArmorResult';
-import { CharacterDomainShieldResult } from '../DomainSubResults/CharacterDomainShieldResult';
-import { CharacterDomainCharacterLanguageResult } from '../DomainSubResults/CharacterDomainCharacterLanguageResult';
-import { CharacterDomainCharacterTrickResult } from '../DomainSubResults/CharacterDomainCharacterTrickResult';
-import { CharacterDomainCharacterFeatResult } from '../DomainSubResults/CharacterDomainCharacterFeatResult';
-import { CharacterDomainCharacterPowerResult } from '../DomainSubResults/CharacterDomainCharacterPowerResult';
+import { CharacterDomainRaceResult } from './DomainSubResults/CharacterDomainRaceResult';
+import { CharacterDomainCharacterClassResult } from './DomainSubResults/CharacterDomainCharacterClassResult';
+import { CharacterDomainCampaignResult } from './DomainSubResults/CharacterDomainCampaignResult';
+import { CharacterDomainPlayerResult } from './DomainSubResults/CharacterDomainPlayerResult';
+import { CharacterDomainArmorResult } from './DomainSubResults/CharacterDomainArmorResult';
+import { CharacterDomainShieldResult } from './DomainSubResults/CharacterDomainShieldResult';
+import { CharacterDomainCharacterLanguageResult } from './DomainSubResults/CharacterDomainCharacterLanguageResult';
+import { CharacterDomainCharacterTrickResult } from './DomainSubResults/CharacterDomainCharacterTrickResult';
+import { CharacterDomainCharacterFeatResult } from './DomainSubResults/CharacterDomainCharacterFeatResult';
+import { CharacterDomainCharacterPowerResult } from './DomainSubResults/CharacterDomainCharacterPowerResult';
 
 export class GetCharacterDomainResult implements IResult {
     ID: number;

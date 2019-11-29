@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import {injectable, inject} from 'tsyringe';
 import { ICharacterService } from '../2.Services/Interfaces/Index';
+import { CheckJwt } from '../../Infrastructure/Authorization/CheckJwt';
 
 
 
@@ -13,7 +14,7 @@ export class CharacterController  {
         @inject('IRouter') private router: Router,
         @inject('ICharacterService') public characterService: ICharacterService
     ) {
-        this.router.get(`${this.path}:characterID`, this.getPersons.bind(this))
+        this.router.get(`${this.path}:characterID`, [CheckJwt], this.getPersons.bind(this))
     }
 
     async getPersons(request: Request, response: Response) {
