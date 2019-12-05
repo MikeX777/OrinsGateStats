@@ -5,7 +5,7 @@ import { createQueryBuilder } from 'typeorm';
 
 export class GetCharacterDomainQueryHandler extends QueryHandlerBase<GetCharacterDomainQuery, GetCharacterDomainResult> {
 
-    public async Execute(query: GetCharacterDomainQuery): Promise<GetCharacterDomainResult | any> {
+    public async Execute(query: GetCharacterDomainQuery): Promise<GetCharacterDomainResult> {
         const character = await createQueryBuilder<GetCharacterDomainResult>('TBCharacter')
             .leftJoinAndSelect('TBCharacter.Armor', 'Armor')
             .leftJoinAndSelect('TBCharacter.Campaign', 'Campaign')

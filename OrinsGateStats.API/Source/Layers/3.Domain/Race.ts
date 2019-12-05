@@ -3,6 +3,7 @@ import { QueryContainer } from "../../Infrastructure/DependancyInversion/QueryCo
 import { IResult } from "../../Infrastructure/Interfaces/IResult";
 import { GetRaceQuery } from "../4.Data/QueryLayer/1.Queries/Race/GetRaceQuery";
 import { GetRaceResult } from "../4.Data/QueryLayer/3.Results/Race/GetRaceResult";
+import { CommandContainer } from "../../Infrastructure/DependancyInversion/CommandContainer";
 
 export class Race extends ModelBase<number> {
 
@@ -11,8 +12,8 @@ export class Race extends ModelBase<number> {
     Name: string;
 
 
-    constructor(id: number, queryContainer: QueryContainer, result?: IResult) {
-        super(id, queryContainer, result);
+    constructor(id: number, queryContainer: QueryContainer, commandContainer: CommandContainer, result?: IResult) {
+        super(id, queryContainer, commandContainer, result);
     }
 
     public async Retrieve(): Promise<boolean> {

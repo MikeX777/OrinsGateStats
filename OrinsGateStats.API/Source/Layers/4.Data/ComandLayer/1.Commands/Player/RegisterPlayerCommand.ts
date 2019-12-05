@@ -1,4 +1,4 @@
-import { ICommand } from '../../../../Infrastructure/Interfaces/ICommand';
+import { ICommand } from '../../../../../Infrastructure/Interfaces/ICommand';
 
 export class RegisterPlayerCommand implements ICommand {
     Key: string = 'RegisterPlayer';

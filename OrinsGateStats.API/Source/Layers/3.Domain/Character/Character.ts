@@ -1,6 +1,7 @@
 import { ModelBase } from '../../../Infrastructure/BaseClasses/ModelBase';
 import { IResult } from '../../../Infrastructure/Interfaces/IResult';
 import { QueryContainer } from '../../../Infrastructure/DependancyInversion/QueryContainer';
+import { CommandContainer } from '../../../Infrastructure/DependancyInversion/CommandContainer';
 import { CharacterDashboradDto } from '../../2.Services/DtoModels/Character/CharacterDashboardDto';
 import { GetCharacterDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Character/GetCharacterDomainQuery';
 import { GetCharacterDomainResult } from '../../4.Data/QueryLayer/3.Results/Character/GetCharacterDomainResult';
@@ -41,8 +42,8 @@ export class Character extends ModelBase<number> {
     Exhaustsion: number;
 
 
-    constructor(id: number, queryContainer: QueryContainer, result?: IResult) {
-        super(id, queryContainer, result);
+    constructor(id: number, queryContainer: QueryContainer, commandContainer: CommandContainer, result?: IResult) {
+        super(id, queryContainer, commandContainer, result);
     }
 
     public async BuildCharacterDashboard(): Promise<CharacterDashboradDto> {
@@ -79,7 +80,8 @@ export class Character extends ModelBase<number> {
             Exhaustion: this.Exhaustsion,
             CampaignName: this.Campaign?.Name ?? '',
             CharacterClassName: this.CharacterClass?.Name ?? '',
-            PlayerName: this.Player?.Name ?? '',
+            PlayerFirstName: this.Player?.FirstName ?? '',
+            PlayerLastName: this.Player?.LastName ?? '',
             RaceName: this.Race?.Name ?? ''
         }
 
@@ -226,7 +228,11 @@ export class Character extends ModelBase<number> {
 
         this._Player =  {
             ID: result.Player.ID,
-            Name: result.Player.Name
+            Username: result.Player.Username,
+            Password: result.Player.Password,
+            Email: result.Player.Email,
+            FirstName: result.Player.FirstName,
+            LastName: result.Player.LastName
         };
 
         this._Race = {

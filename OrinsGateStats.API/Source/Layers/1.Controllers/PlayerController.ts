@@ -2,7 +2,10 @@ import { injectable, inject } from 'tsyringe';
 import { Router, Response, Request } from 'express';
 import { check, validationResult } from 'express-validator';
 import { IPlayerService } from '../2.Services/Interfaces/Index';
-import { LoginRequest } from './Requests/LoginRequest';
+import { LoginRequest } from './Requests/Player/LoginRequest';
+import { CheckJwt } from '../../Infrastructure/Authorization/CheckJwt';
+import { CreateCharacterRequest } from './Requests/Player/CreateCharacterRequest';
+import { Player } from '../3.Domain/Player/Player';
 
 @injectable()
 export class PlayerController {
@@ -29,6 +32,40 @@ export class PlayerController {
             check('EmailOrUsername').exists(),
             check('Password')
         ], this.Login.bind(this));
+
+        this.router.post(`${this.path}createCharacter`, [
+            CheckJwt,
+            check('CharacterName').exists(),
+            check('Conscious').exists(),
+            check('Alive').exists(),
+            check('Stable').exists(),
+            check('MaxHealth').exists(),
+            check('CurrentHealth').exists(),
+            check('Strength').exists(),
+            check('Dexterity').exists(),
+            check('Constitution').exists(),
+            check('Intelligence').exists(),
+            check('Wisdom').exists(),
+            check('Charisma').exists(),
+            check('ProficiencyBonus').exists(),
+            check('Speed').exists(),
+            check('Copper').exists(),
+            check('Silver').exists(),
+            check('Gold').exists(),
+            check('MaxHitDice').exists(),
+            check('CurrentHitDice').exists(),
+            check('Exhaustion').exists(),
+            check('RaceID').exists(),
+            check('CharacterClassID').exists(),
+            check('CampaignID').exists(),
+            check('PlayerID').exists(),
+            check('ArmorID').exists(),
+            check('ShieldID').exists(),
+            check('LanguageIDs').exists().isArray(),
+            check('FeatIDs').exists().isArray(),
+            check('TrickIDs').exists().isArray(),
+            check('PowerIDs').exists().isArray()
+        ], this.CreateCharacter.bind(this));
     }
 
     async RegisterPlayer(request: Request, response: Response) {
@@ -55,7 +92,7 @@ export class PlayerController {
     async Login(request: Request, response: Response) {
         const errors = validationResult(request);
         if (!errors.isEmpty()) {
-            return response.status(422).json({ errors: errors.array() });
+            return response.status(422).json({ Errors: errors.array() });
         }
 
         let requestObject: LoginRequest = {
@@ -70,5 +107,53 @@ export class PlayerController {
         }
 
         return response.status(200).send({ Token: token });
+    }
+
+    async CreateCharacter(request: Request, response: Response) {
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            return response.status(422).json({ Errors: errors.array() });
+        }
+        
+        if (request.body.PlayerID !== response.locals.jwtPayload.PlayerID) {
+            return response.status(400).send('Bad Request');
+        }
+
+        let requestObject: CreateCharacterRequest = {
+            CharacterName: request.body.CharacterName,
+            Conscious: request.body.Conscious,
+            Alive: request.body.Alive,
+            Stable: request.body.Stable,
+            MaxHealth: request.body.MaxHealth,
+            CurrentHealth: request.body.CurrentHealth,
+            Strength: request.body.Strength,
+            Dexterity: request.body.Dexterity,
+            Constitution: request.body.Constitution,
+            Intelligence: request.body.Intelligence,
+            Wisdom: request.body.Wisdom,
+            Charisma: request.body.Charisma,
+            ProficiencyBonus: request.body.ProficiencyBonus,
+            Speed: request.body.Speed,
+            Copper: request.body.Copper,
+            Silver: request.body.Silver,
+            Gold: request.body.Gold,
+            MaxHitDice: request.body.MaxHitDice,
+            CurrentHitDice: request.body.CurrentHitDice,
+            Exhaustion: request.body.Exhaustion,
+            RaceID: request.body.RaceID,
+            CharacterClassID: request.body.CharacterClassID,
+            CampaignID: request.body.CampaignID,
+            PlayerID: request.body.PlayerID,
+            ArmorID: request.body.ArmorID,
+            ShieldID: request.body.ShieldID,
+            LanguageIDs: request.body.LanguageIDs,
+            FeatIDs: request.body.FeatIDs,
+            TrickIDs: request.body.TrickIDs,
+            PowerIDs: request.body.PowerIDs
+        };
+
+        let newCharacter =  await this.playerService.CreateCharacter(requestObject);
+        return response.status(200).send(newCharacter);
+
     }
 }

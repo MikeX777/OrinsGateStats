@@ -1,25 +1,16 @@
-export class CharacterDashboradDto {
-    ID: number;
+export class CreateCharacterRequest {
     CharacterName: string;
-    Level: number;
     Conscious: boolean;
     Alive: boolean;
     Stable: boolean;
     MaxHealth: number;
     CurrentHealth: number;
-    ArmorClass: number;
     Strength: number;
-    StrengthModifier: number;
     Dexterity: number;
-    DexterityModifier: number;
     Constitution: number;
-    ConstitutionModifier: number;
     Intelligence: number;
-    IntelligenceModifier: number;
     Wisdom: number;
-    WisdomModifier: number;
     Charisma: number;
-    CharismaModifier: number;
     ProficiencyBonus: number;
     Speed: number;
     Copper: number;
@@ -28,9 +19,14 @@ export class CharacterDashboradDto {
     MaxHitDice: number;
     CurrentHitDice: number;
     Exhaustion: number;
-    CampaignName: string;
-    CharacterClassName: string;
-    PlayerFirstName: string;
-    PlayerLastName: string;
-    RaceName: string;
+    RaceID: number;
+    CharacterClassID: number;
+    CampaignID: number;
+    PlayerID: number;
+    ArmorID: number;
+    ShieldID: number;
+    LanguageIDs: number[];
+    FeatIDs: number[];
+    TrickIDs: number[];
+    PowerIDs: number[];
 }

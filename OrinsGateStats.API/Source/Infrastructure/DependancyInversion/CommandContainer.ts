@@ -11,7 +11,7 @@ export class CommandContainer {
         this.containerDictionary.Add(commandName, handler);
     }
 
-    public async ExecuteCommand<TCommand extends ICommand>(command: TCommand): Promise<number> {
+    public async ExecuteCommand<TCommand extends ICommand>(command: TCommand): Promise<any> {
         if (this.containerDictionary.ContainsKey(command.Key)) {
             let handler = this.containerDictionary.Item(command.Key);
             return await handler.Execute(command);

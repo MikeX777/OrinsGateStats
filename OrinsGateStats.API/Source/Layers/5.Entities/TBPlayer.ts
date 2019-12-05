@@ -26,7 +26,7 @@ export class TBPlayer {
     @Column()
     LastName: string;
 
-    @OneToMany(() => TBCharacter, character => character.Player)
+    @OneToMany(() => TBCharacter, character => character.Player, { onDelete: 'CASCADE' })
     Characters: TBCharacter[];
 
     @BeforeInsert()

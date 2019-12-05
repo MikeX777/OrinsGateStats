@@ -1,4 +1,9 @@
 export class Sub_Player {
+    
     ID: number;
-    Name: string;
+    Username: string;
+    Password: string;
+    Email: string;
+    FirstName: string;
+    LastName: string;
 }

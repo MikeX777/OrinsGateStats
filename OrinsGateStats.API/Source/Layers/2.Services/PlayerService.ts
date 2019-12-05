@@ -2,14 +2,16 @@ import { injectable, inject } from 'tsyringe';
 import { IPlayerService } from './Interfaces/Index';
 import { QueryContainer } from '../../Infrastructure/DependancyInversion/QueryContainer';
 import { CommandContainer } from '../../Infrastructure/DependancyInversion/CommandContainer';
-import { RegisterPlayerCommand } from '../4.Data/ComandLayer/1.Commands/RegisterPlayerCommand';
-import { RegisterPlayerRequest } from '../1.Controllers/Requests/RegisterPlayerRequest';
-import { LoginRequest } from '../1.Controllers/Requests/LoginRequest';
+import { RegisterPlayerCommand } from '../4.Data/ComandLayer/1.Commands/Player/RegisterPlayerCommand';
+import { RegisterPlayerRequest } from '../1.Controllers/Requests/Player/RegisterPlayerRequest';
+import { LoginRequest } from '../1.Controllers/Requests/Player/LoginRequest';
 import { FindPlayerByEmailOrUsernameQuery } from '../4.Data/QueryLayer/1.Queries/Player/FindPlayerByEmailOrUsernameQuery';
 import { FindPlayerByEmailOrUsernameResult } from '../4.Data/QueryLayer/3.Results/Player/FindPlayerByEmailOrUsernameResult';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import secret from '../../Infrastructure/Authorization/JwtSecret';
+import { CreateCharacterRequest } from '../1.Controllers/Requests/Player/CreateCharacterRequest';
+import { Player } from '../3.Domain/Player/Player';
 
 @injectable()
 export class PlayerService implements IPlayerService {
@@ -40,5 +42,11 @@ export class PlayerService implements IPlayerService {
             }
         }
         return undefined;
+    }
+
+    public async CreateCharacter(createCharacterRequest: CreateCharacterRequest): Promise<any> {
+        let player = new Player(createCharacterRequest.PlayerID, this.queryContainer, this.commandContainer);
+
+        return await player.CreateCharacter(createCharacterRequest);
     }
 }
