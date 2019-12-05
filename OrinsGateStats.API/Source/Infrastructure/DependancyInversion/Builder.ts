@@ -6,6 +6,7 @@ import { CommandContainer } from './CommandContainer';
 import { RegisterPlayerCommandHandler } from '../../Layers/4.Data/ComandLayer/2.ComandHandlers/Player/RegisterPlayerCommandHandler';
 import { FindPlayerByEmailOrUsernameQueryHandler } from '../../Layers/4.Data/QueryLayer/2.QueryHandlers/Player/FindPlayerByEmailOrUsernameQueryHandler';
 import { CreateCharacterCommandHandler } from '../../Layers/4.Data/ComandLayer/2.ComandHandlers/Character/CreateCharacterCommandHandler';
+import { GetPlayerDomainQueryHandler } from '../../Layers/4.Data/QueryLayer/2.QueryHandlers/Player/GetPlayerDomainQueryHandler';
 
 export function BuildQueryContainer(): QueryContainer {
     let queryContainer = new QueryContainer();
@@ -14,6 +15,7 @@ export function BuildQueryContainer(): QueryContainer {
     queryContainer.Register('GetCharacterDomainQuery', new GetCharacterDomainQueryHandler());
     queryContainer.Register('GetRaceQuery', new GetRaceQueryHandler());
     queryContainer.Register('FindPlayerbyEmailOrUsernameQuery', new FindPlayerByEmailOrUsernameQueryHandler())
+    queryContainer.Register('GetPlayerDomainQuery', new GetPlayerDomainQueryHandler());
 
     return queryContainer;
 }

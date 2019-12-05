@@ -8,6 +8,7 @@ import { GetPlayerDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Player/G
 import { CreateCharacterCommand } from '../../4.Data/ComandLayer/1.Commands/Character/CreateCharacterCommand';
 import { CreateCharacterRequest } from '../../1.Controllers/Requests/Player/CreateCharacterRequest';
 import { TBCharacter } from '../../5.Entities/TBCharacter';
+import { PlayerDashboardDto } from '../../2.Services/DtoModels/Player/PlayerDashboardDto';
 
 export class Player extends ModelBase<number> {
 
@@ -86,6 +87,39 @@ export class Player extends ModelBase<number> {
             ArmorID: characterResult.ArmorID,
             ShieldID: characterResult.ShieldID
         };
+    }
+
+    public async BuildPlayerDashboard(): Promise<PlayerDashboardDto> {
+        return  {
+            ID: this.ID,
+            FirstName: this.FirstName,
+            LastName: this.LastName,
+            Characters: this.Characters.map(character => {
+                return {
+                    ID: character.ID,
+                    Name: character.Name,
+                    Conscious: character.Conscious,
+                    Alive: character.Alive,
+                    Stable: character.Stable,
+                    MaxHealth: character.MaxHealth,
+                    CurrentHealth: character.CurrentHealth,
+                    Strength: character.Strength,
+                    Dexterity: character.Dexterity,
+                    Constitution: character.Constitution,
+                    Intelligence: character.Intelligence,
+                    Wisdom: character.Wisdom,
+                    Charisma: character.Charisma,
+                    ProficiencyBonus: character.ProficiencyBonus,
+                    Speed: character.Speed,
+                    Copper: character.Copper,
+                    Silver: character.Silver,
+                    Gold: character.Gold,
+                    MaxHitDice: character.MaxHitDice,
+                    CurrentHitDice: character.CurrentHitDice,
+                    Exhaustsion: character.Exhaustsion
+                }
+            })
+        }
     }
 
     public async Retrieve(): Promise<boolean> {

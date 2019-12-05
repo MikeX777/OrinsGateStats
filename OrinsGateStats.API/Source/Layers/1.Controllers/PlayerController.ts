@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { Router, Response, Request } from 'express';
-import { check, validationResult } from 'express-validator';
+import { check, validationResult, sanitizeParam } from 'express-validator';
 import { IPlayerService } from '../2.Services/Interfaces/Index';
 import { LoginRequest } from './Requests/Player/LoginRequest';
 import { CheckJwt } from '../../Infrastructure/Authorization/CheckJwt';
@@ -66,6 +66,11 @@ export class PlayerController {
             check('TrickIDs').exists().isArray(),
             check('PowerIDs').exists().isArray()
         ], this.CreateCharacter.bind(this));
+
+        this.router.get(`${this.path}dashboard/:PlayerID`, [
+            CheckJwt,
+            sanitizeParam('PlayerID').toInt()
+        ], this.GetPlayerDashboard.bind(this));
     }
 
     async RegisterPlayer(request: Request, response: Response) {
@@ -114,7 +119,7 @@ export class PlayerController {
         if (!errors.isEmpty()) {
             return response.status(422).json({ Errors: errors.array() });
         }
-        
+
         if (request.body.PlayerID !== response.locals.jwtPayload.PlayerID) {
             return response.status(400).send('Bad Request');
         }
@@ -154,6 +159,19 @@ export class PlayerController {
 
         let newCharacter =  await this.playerService.CreateCharacter(requestObject);
         return response.status(200).send(newCharacter);
+    }
 
+    async GetPlayerDashboard(request: Request, response: Response) {
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            return response.status(422).json({ Errors: errors.array() });
+        }
+        
+        if (request.params.PlayerID !== response.locals.jwtPayload.PlayerID) {
+            return response.status(400).send('Bad Request');
+        }
+
+        let playerDashboard = await this.playerService.GetPlayerDashboard(parseInt(request.params.PlayerID));
+        return response.status(200).send(playerDashboard);
     }
 }

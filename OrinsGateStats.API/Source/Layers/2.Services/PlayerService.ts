@@ -12,6 +12,7 @@ import { sign } from 'jsonwebtoken';
 import secret from '../../Infrastructure/Authorization/JwtSecret';
 import { CreateCharacterRequest } from '../1.Controllers/Requests/Player/CreateCharacterRequest';
 import { Player } from '../3.Domain/Player/Player';
+import { PlayerDashboardDto } from './DtoModels/Player/PlayerDashboardDto';
 
 @injectable()
 export class PlayerService implements IPlayerService {
@@ -48,5 +49,11 @@ export class PlayerService implements IPlayerService {
         let player = new Player(createCharacterRequest.PlayerID, this.queryContainer, this.commandContainer);
 
         return await player.CreateCharacter(createCharacterRequest);
+    }
+
+    public async GetPlayerDashboard(playerID: number): Promise<PlayerDashboardDto> {
+        let player = new Player(playerID, this.queryContainer, this.commandContainer);
+        await player.Retrieve();
+        return await player.BuildPlayerDashboard();
     }
 }
