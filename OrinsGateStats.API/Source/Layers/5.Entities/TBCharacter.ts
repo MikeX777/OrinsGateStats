@@ -53,9 +53,6 @@ export class TBCharacter {
     public Charisma: number;
 
     @Column()
-    public ProficiencyBonus: number;
-
-    @Column()
     public Speed: number;
 
     @Column()

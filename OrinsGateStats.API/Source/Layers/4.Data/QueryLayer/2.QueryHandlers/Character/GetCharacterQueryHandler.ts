@@ -1,16 +1,15 @@
+import { getRepository } from 'typeorm';
 import { QueryHandlerBase } from '../../../../../Infrastructure/BaseClasses/QueryHandlerBase';
+import { TBCharacter } from '../../../../5.Entities/TBCharacter';
 import { GetCharacterQuery } from '../../1.Queries/Character/GetCharacterQuery';
 import { GetCharacterResult } from '../../3.Results/Character/GetCharacterResult';
-import { getRepository } from 'typeorm';
-import { TBCharacter } from '../../../../5.Entities/TBCharacter';
-
 
 export class GetCharacterQueryHandler extends QueryHandlerBase<GetCharacterQuery, GetCharacterResult> {
 
     public async Execute(query: GetCharacterQuery): Promise<GetCharacterResult> {
-        let characterRepository = getRepository(TBCharacter);
-        let character = await characterRepository.findOne(query.CharacterID);
-        let result: GetCharacterResult = {
+        const characterRepository = getRepository(TBCharacter);
+        const character = await characterRepository.findOne(query.CharacterID);
+        const result: GetCharacterResult = {
             ID: character.ID,
             Name: character.Name,
             Conscious: character.Conscious,
@@ -23,7 +22,6 @@ export class GetCharacterQueryHandler extends QueryHandlerBase<GetCharacterQuery
             Intelligence: character.Intelligence,
             Wisdom: character.Wisdom,
             Charisma: character.Charisma,
-            ProficiencyBonus: character.ProficiencyBonus,
             Speed: character.Speed,
             Copper: character.Copper,
             Silver: character.Silver,
@@ -36,7 +34,7 @@ export class GetCharacterQueryHandler extends QueryHandlerBase<GetCharacterQuery
             CampaignID: character.CampaignID,
             PlayerID: character.PlayerID,
             ArmorID: character.ArmorID,
-            ShieldID: character.ShieldID
+            ShieldID: character.ShieldID,
         };
         return result;
     }

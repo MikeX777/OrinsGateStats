@@ -1,43 +1,42 @@
 export class CreateCharacterCommand {
-    Key: string = 'CreateCharacterCommand';
+    public Key: string = 'CreateCharacterCommand';
 
-    CharacterName: string;
-    Conscious: boolean;
-    Alive: boolean;
-    Stable: boolean;
-    MaxHealth: number;
-    CurrentHealth: number;
-    Strength: number;
-    Dexterity: number;
-    Constitution: number;
-    Intelligence: number;
-    Wisdom: number;
-    Charisma: number;
-    ProficiencyBonus: number;
-    Speed: number;
-    Copper: number;
-    Silver: number;
-    Gold: number;
-    MaxHitDice: number;
-    CurrentHitDice: number;
-    Exhaustion: number;
-    RaceID: number;
-    CharacterClassID: number;
-    CampaignID: number;
-    PlayerID: number;
-    ArmorID: number;
-    ShieldID: number;
-    LanguageIDs: number[];
-    FeatIDs: number[];
-    TrickIDs: number[];
-    PowerIDs: number[];
+    public CharacterName: string;
+    public Conscious: boolean;
+    public Alive: boolean;
+    public Stable: boolean;
+    public MaxHealth: number;
+    public CurrentHealth: number;
+    public Strength: number;
+    public Dexterity: number;
+    public Constitution: number;
+    public Intelligence: number;
+    public Wisdom: number;
+    public Charisma: number;
+    public Speed: number;
+    public Copper: number;
+    public Silver: number;
+    public Gold: number;
+    public MaxHitDice: number;
+    public CurrentHitDice: number;
+    public Exhaustion: number;
+    public RaceID: number;
+    public CharacterClassID: number;
+    public CampaignID: number;
+    public PlayerID: number;
+    public ArmorID: number;
+    public ShieldID: number;
+    public LanguageIDs: number[];
+    public FeatIDs: number[];
+    public TrickIDs: number[];
+    public PowerIDs: number[];
 
     constructor(characterName: string, conscious: boolean, alive: boolean, stable: boolean, maxHealth: number,
-        currentHealth: number, strength: number, dexterity: number, constitution: number, intelligence: number,
-        wisdom: number, charisma: number, proficiencyBonus: number, speed: number, copper: number, silver: number,
-        gold: number, maxHitDice: number, currenthitDice: number, exhaustion: number, raceID: number,
-        characterClassID: number, campaignID: number, playerID: number, armorID: number, shieldID: number,
-        languageIDs: number[], featIDs: number[], trickIDs: number[], powerIDs: number[]) {
+                currentHealth: number, strength: number, dexterity: number, constitution: number, intelligence: number,
+                wisdom: number, charisma: number, speed: number, copper: number, silver: number,
+                gold: number, maxHitDice: number, currenthitDice: number, exhaustion: number, raceID: number,
+                characterClassID: number, campaignID: number, playerID: number, armorID: number, shieldID: number,
+                languageIDs: number[], featIDs: number[], trickIDs: number[], powerIDs: number[]) {
             this.CharacterName = characterName;
             this.Conscious = conscious;
             this.Alive = alive;
@@ -50,7 +49,6 @@ export class CreateCharacterCommand {
             this.Intelligence = intelligence;
             this.Wisdom = wisdom;
             this.Charisma = charisma;
-            this.ProficiencyBonus = proficiencyBonus;
             this.Speed = speed;
             this.Copper = copper;
             this.Silver = silver;

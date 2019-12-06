@@ -1,8 +1,8 @@
 import { PlayerDashboardCharacterDto } from './SubObjects/PlayerDashboardCharacterDto';
 
 export class PlayerDashboardDto {
-    ID: number;
-    FirstName: string;
-    LastName: string;
-    Characters: PlayerDashboardCharacterDto[];
+    public ID: number;
+    public FirstName: string;
+    public LastName: string;
+    public Characters: PlayerDashboardCharacterDto[];
 }

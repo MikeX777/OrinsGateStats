@@ -1,30 +1,39 @@
 import { ModelBase } from '../../../Infrastructure/BaseClasses/ModelBase';
-import { QueryContainer } from '../../../Infrastructure/DependancyInversion/QueryContainer';
 import { CommandContainer } from '../../../Infrastructure/DependancyInversion/CommandContainer';
+import { QueryContainer } from '../../../Infrastructure/DependancyInversion/QueryContainer';
 import { IResult } from '../../../Infrastructure/Interfaces/IResult';
-import { Sub_Character } from './SubObjects/Sub_Character';
-import { GetPlayerDomainResult } from '../../4.Data/QueryLayer/3.Results/Player/GetPlayerDomainResult';
-import { GetPlayerDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Player/GetPlayerDomainQuery';
-import { CreateCharacterCommand } from '../../4.Data/ComandLayer/1.Commands/Character/CreateCharacterCommand';
 import { CreateCharacterRequest } from '../../1.Controllers/Requests/Player/CreateCharacterRequest';
-import { TBCharacter } from '../../5.Entities/TBCharacter';
 import { PlayerDashboardDto } from '../../2.Services/DtoModels/Player/PlayerDashboardDto';
+import { PlayerDashboardCharacterDto } from '../../2.Services/DtoModels/Player/SubObjects/PlayerDashboardCharacterDto';
+import { CreateCharacterCommand } from '../../4.Data/ComandLayer/1.Commands/Character/CreateCharacterCommand';
+import { GetPlayerDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Player/GetPlayerDomainQuery';
+import { GetPlayerDomainResult } from '../../4.Data/QueryLayer/3.Results/Player/GetPlayerDomainResult';
+import { TBCharacter } from '../../5.Entities/TBCharacter';
+import { Sub_Character } from './SubObjects/Sub_Character';
 
 export class Player extends ModelBase<number> {
 
-    ID: number;
-    Username: string;
-    Password: string;
-    Email: string;
-    FirstName: string;
-    LastName: string;
+    public ID: number;
+    public Username: string;
+    public Password: string;
+    public Email: string;
+    public FirstName: string;
+    public LastName: string;
+
+    private characters: Sub_Character[];
+    public get Characters(): Sub_Character[] {
+        return this.characters;
+    }
+    public set Characters(v: Sub_Character[]) {
+        this.characters = v;
+    }
 
     constructor(id: number, queryContainer: QueryContainer, commandContainer: CommandContainer, result?: IResult) {
         super(id, queryContainer, commandContainer, result);
     }
 
     public async CreateCharacter(request: CreateCharacterRequest): Promise<any> {
-        let createCharacterCommand = new CreateCharacterCommand(
+        const createCharacterCommand = new CreateCharacterCommand(
             request.CharacterName,
             request.Conscious,
             request.Alive,
@@ -37,7 +46,6 @@ export class Player extends ModelBase<number> {
             request.Intelligence,
             request.Wisdom,
             request.Charisma,
-            request.ProficiencyBonus,
             request.Speed,
             request.Copper,
             request.Silver,
@@ -54,9 +62,10 @@ export class Player extends ModelBase<number> {
             request.LanguageIDs,
             request.FeatIDs,
             request.TrickIDs,
-            request.PowerIDs
-        )
-        let characterResult = <TBCharacter>await this.commandContainer.ExecuteCommand(createCharacterCommand);
+            request.PowerIDs,
+        );
+
+        const characterResult = await this.commandContainer.ExecuteCommand(createCharacterCommand) as TBCharacter;
 
         return {
             ID: characterResult.ID,
@@ -72,7 +81,6 @@ export class Player extends ModelBase<number> {
             Intelligence: characterResult.Intelligence,
             Wisdom: characterResult.Wisdom,
             Charisma: characterResult.Charisma,
-            ProficiencyBonus: characterResult.ProficiencyBonus,
             Speed: characterResult.Speed,
             Copper: characterResult.Copper,
             Silver: characterResult.Silver,
@@ -85,17 +93,17 @@ export class Player extends ModelBase<number> {
             CampaignID: characterResult.CampaignID,
             PlayerID: characterResult.PlayerID,
             ArmorID: characterResult.ArmorID,
-            ShieldID: characterResult.ShieldID
+            ShieldID: characterResult.ShieldID,
         };
     }
 
     public async BuildPlayerDashboard(): Promise<PlayerDashboardDto> {
-        return  {
+        const dto: PlayerDashboardDto = {
             ID: this.ID,
             FirstName: this.FirstName,
             LastName: this.LastName,
-            Characters: this.Characters.map(character => {
-                return {
+            Characters: this.Characters.map((character) => {
+                const characterDto: PlayerDashboardCharacterDto = {
                     ID: character.ID,
                     Name: character.Name,
                     Conscious: character.Conscious,
@@ -109,40 +117,33 @@ export class Player extends ModelBase<number> {
                     Intelligence: character.Intelligence,
                     Wisdom: character.Wisdom,
                     Charisma: character.Charisma,
-                    ProficiencyBonus: character.ProficiencyBonus,
+                    ProficiencyBonus: 2 + Math.floor(character.MaxHitDice / 4),
                     Speed: character.Speed,
                     Copper: character.Copper,
                     Silver: character.Silver,
                     Gold: character.Gold,
                     MaxHitDice: character.MaxHitDice,
                     CurrentHitDice: character.CurrentHitDice,
-                    Exhaustsion: character.Exhaustsion
-                }
-            })
-        }
+                    Exhaustsion: character.Exhaustsion,
+                };
+                return characterDto;
+            }),
+        };
+        return dto;
     }
 
     public async Retrieve(): Promise<boolean> {
         if (!this.retrieved) {
-            let result = await this.queryContainer.ExecuteQuery<GetPlayerDomainQuery, GetPlayerDomainResult>(
-                new GetPlayerDomainQuery(this.ID)
+            const result = await this.queryContainer.ExecuteQuery<GetPlayerDomainQuery, GetPlayerDomainResult>(
+                new GetPlayerDomainQuery(this.ID),
             );
 
             if (result !== undefined) {
                 this.MapResult(result);
-                this.retrieved;
+                this.retrieved = true;
             }
         }
         return this.retrieved;
-    }
-
-    
-    private _Characters : Sub_Character[];
-    public get Characters() : Sub_Character[] {
-        return this._Characters;
-    }
-    public set Characters(v : Sub_Character[]) {
-        this._Characters = v;
     }
 
     private MapResult(result: GetPlayerDomainResult): void {
@@ -153,7 +154,7 @@ export class Player extends ModelBase<number> {
         this.FirstName = result.FirstName;
         this.LastName = result.LastName;
 
-        this._Characters = result.Characters.map(c => {
+        this.characters = result.Characters.map((c) => {
             return {
                 ID: c.ID,
                 Name: c.Name,
@@ -168,7 +169,6 @@ export class Player extends ModelBase<number> {
                 Intelligence: c.Intelligence,
                 Wisdom: c.Wisdom,
                 Charisma: c.Charisma,
-                ProficiencyBonus: c.ProficiencyBonus,
                 Speed: c.Speed,
                 Copper: c.Copper,
                 Silver: c.Silver,
@@ -185,9 +185,8 @@ export class Player extends ModelBase<number> {
                 LanguageIDs: c.LanguageIDs,
                 FeatIDs: c.FeatIDs,
                 TrickIDs: c.TrickIDs,
-                PowerIDs: c.PowerIDs
+                PowerIDs: c.PowerIDs,
             };
         });
     }
-    
 }

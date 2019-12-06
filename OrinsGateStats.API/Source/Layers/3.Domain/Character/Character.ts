@@ -1,7 +1,7 @@
 import { ModelBase } from '../../../Infrastructure/BaseClasses/ModelBase';
-import { IResult } from '../../../Infrastructure/Interfaces/IResult';
-import { QueryContainer } from '../../../Infrastructure/DependancyInversion/QueryContainer';
 import { CommandContainer } from '../../../Infrastructure/DependancyInversion/CommandContainer';
+import { QueryContainer } from '../../../Infrastructure/DependancyInversion/QueryContainer';
+import { IResult } from '../../../Infrastructure/Interfaces/IResult';
 import { CharacterDashboradDto } from '../../2.Services/DtoModels/Character/CharacterDashboardDto';
 import { GetCharacterDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Character/GetCharacterDomainQuery';
 import { GetCharacterDomainResult } from '../../4.Data/QueryLayer/3.Results/Character/GetCharacterDomainResult';
@@ -19,28 +19,106 @@ import { Sub_Trick } from './SubObjects/Sub_Trick';
 
 export class Character extends ModelBase<number> {
 
-    ID: number;
-    Name: string;
-    Conscious: boolean;
-    Alive: boolean;
-    Stable: boolean;
-    MaxHealth: number;
-    CurrentHealth: number;
-    Strength: number;
-    Dexterity: number;
-    Constitution: number;
-    Intelligence: number;
-    Wisdom: number;
-    Charisma: number;
-    ProficiencyBonus: number;
-    Speed: number;
-    Copper: number;
-    Silver: number;
-    Gold: number;
-    MaxHitDice: number;
-    CurrentHitDice: number;
-    Exhaustsion: number;
+    public ID: number;
+    public Name: string;
+    public Conscious: boolean;
+    public Alive: boolean;
+    public Stable: boolean;
+    public MaxHealth: number;
+    public CurrentHealth: number;
+    public Strength: number;
+    public Dexterity: number;
+    public Constitution: number;
+    public Intelligence: number;
+    public Wisdom: number;
+    public Charisma: number;
+    public Speed: number;
+    public Copper: number;
+    public Silver: number;
+    public Gold: number;
+    public MaxHitDice: number;
+    public CurrentHitDice: number;
+    public Exhaustsion: number;
 
+    private armor: Sub_Armor;
+    public get Armor(): Sub_Armor {
+        return this.armor;
+    }
+    public set Armor(v: Sub_Armor) {
+        this.armor = v;
+    }
+
+    private campaign: Sub_Campaign;
+    public get Campaign(): Sub_Campaign {
+        return this.campaign;
+    }
+    public set Campaign(v: Sub_Campaign) {
+        this.campaign = v;
+    }
+
+    private characterClass: Sub_CharacterClass;
+    public get CharacterClass(): Sub_CharacterClass {
+        return this.characterClass;
+    }
+    public set CharacterClass(v: Sub_CharacterClass) {
+        this.characterClass = v;
+    }
+
+    private player: Sub_Player;
+    public get Player(): Sub_Player {
+        return this.player;
+    }
+    public set Player(v: Sub_Player) {
+        this.player = v;
+    }
+
+    private race: Sub_Race;
+    public get Race(): Sub_Race {
+        return this.race;
+    }
+    public set Race(v: Sub_Race) {
+        this.race = v;
+    }
+
+    private shield: Sub_Shield;
+    public get Shield(): Sub_Shield {
+        return this.shield;
+    }
+    public set Shield(v: Sub_Shield) {
+        this.shield = v;
+    }
+
+    private feats: Sub_Feat[];
+    public get Feats(): Sub_Feat[] {
+        return this.feats;
+    }
+    public set Feats(v: Sub_Feat[]) {
+        this.feats = v;
+    }
+
+    private languages: Sub_Language[];
+    public get Language(): Sub_Language[] {
+        return this.languages;
+    }
+    public set Language(v: Sub_Language[]) {
+        this.languages = v;
+    }
+
+    private powers: Sub_Power[];
+    public get Powers(): Sub_Power[] {
+        return this.powers;
+    }
+    public set Powers(v: Sub_Power[]) {
+        this.powers = v;
+    }
+
+    private tricks: Sub_Trick[];
+    public get Tricks(): Sub_Trick[] {
+        return this.tricks;
+    }
+    public set Tricks(v: Sub_Trick[]) {
+        this.tricks = v;
+    }
 
     constructor(id: number, queryContainer: QueryContainer, commandContainer: CommandContainer, result?: IResult) {
         super(id, queryContainer, commandContainer, result);
@@ -48,7 +126,7 @@ export class Character extends ModelBase<number> {
 
     public async BuildCharacterDashboard(): Promise<CharacterDashboradDto> {
 
-        let dashboard: CharacterDashboradDto = {
+        const dashboard: CharacterDashboradDto = {
             ID: this.ID,
             CharacterName: this.Name,
             Level: this.MaxHitDice,
@@ -70,7 +148,7 @@ export class Character extends ModelBase<number> {
             WisdomModifier: Math.floor((this.Wisdom - 10) / 2),
             Charisma: this.Charisma,
             CharismaModifier: Math.floor((this.Charisma - 10) / 2),
-            ProficiencyBonus: this.ProficiencyBonus,
+            ProficiencyBonus: 2 + Math.floor(this.MaxHitDice / 4),
             Speed: this.Speed,
             Copper: this.Copper,
             Silver: this.Silver,
@@ -82,16 +160,16 @@ export class Character extends ModelBase<number> {
             CharacterClassName: this.CharacterClass?.Name ?? '',
             PlayerFirstName: this.Player?.FirstName ?? '',
             PlayerLastName: this.Player?.LastName ?? '',
-            RaceName: this.Race?.Name ?? ''
-        }
+            RaceName: this.Race?.Name ?? '',
+        };
 
         return dashboard;
     }
 
     public async Retrieve(): Promise<boolean> {
         if (!this.retrieved) {
-            let result = await this.queryContainer.ExecuteQuery<GetCharacterDomainQuery, GetCharacterDomainResult>(
-                new GetCharacterDomainQuery(this.ID)
+            const result = await this.queryContainer.ExecuteQuery<GetCharacterDomainQuery, GetCharacterDomainResult>(
+                new GetCharacterDomainQuery(this.ID),
             );
 
             if (result !== undefined) {
@@ -102,86 +180,6 @@ export class Character extends ModelBase<number> {
         return this.retrieved;
     }
 
-    private _Armor : Sub_Armor;
-    public get Armor() : Sub_Armor {
-        return this._Armor;
-    }
-    public set Armor(v : Sub_Armor) {
-        this._Armor = v;
-    }
-    
-    private _Campaign : Sub_Campaign;
-    public get Campaign() : Sub_Campaign {
-        return this._Campaign;
-    }
-    public set Campaign(v : Sub_Campaign) {
-        this._Campaign = v;
-    }
-    
-    private _CharacterClass : Sub_CharacterClass;
-    public get CharacterClass() : Sub_CharacterClass {
-        return this._CharacterClass;
-    }
-    public set CharacterClass(v : Sub_CharacterClass) {
-        this._CharacterClass = v;
-    }
-    
-    private _Player : Sub_Player;
-    public get Player() : Sub_Player {
-        return this._Player;
-    }
-    public set Player(v : Sub_Player) {
-        this._Player = v;
-    }
-    
-    private _Race : Sub_Race;
-    public get Race() : Sub_Race {
-        return this._Race;
-    }
-    public set Race(v : Sub_Race) {
-        this._Race = v;
-    }
-    
-    private _Shield : Sub_Shield;
-    public get Shield() : Sub_Shield {
-        return this._Shield;
-    }
-    public set Shield(v : Sub_Shield) {
-        this._Shield = v;
-    }
-  
-    private _Feats : Sub_Feat[];
-    public get Feats() : Sub_Feat[] {
-        return this._Feats;
-    }
-    public set Feats(v : Sub_Feat[]) {
-        this._Feats = v;
-    }
-
-    private _Languages : Sub_Language[];
-    public get Language() : Sub_Language[] {
-        return this._Languages;
-    }
-    public set Language(v : Sub_Language[]) {
-        this._Languages = v;
-    }
-    
-    private _Powers : Sub_Power[];
-    public get Powers() : Sub_Power[] {
-        return this._Powers;
-    }
-    public set Powers(v : Sub_Power[]) {
-        this._Powers = v;
-    }
-    
-    private _Tricks : Sub_Trick[];
-    public get Tricks() : Sub_Trick[] {
-        return this._Tricks;
-    }
-    public set Tricks(v : Sub_Trick[]) {
-        this._Tricks = v;
-    }
-    
     private MapResult(result: GetCharacterDomainResult): void {
         this.ID = result.ID;
         this.Name = result.Name;
@@ -196,7 +194,6 @@ export class Character extends ModelBase<number> {
         this.Intelligence = result.Intelligence;
         this.Wisdom = result.Wisdom;
         this.Charisma = result.Charisma;
-        this.ProficiencyBonus = result.ProficiencyBonus;
         this.Speed = result.Speed;
         this.Copper = result.Copper;
         this.Silver = result.Silver;
@@ -204,83 +201,82 @@ export class Character extends ModelBase<number> {
         this.MaxHitDice = result.MaxHitDice;
         this.CurrentHitDice = result.CurrentHitDice;
         this.Exhaustsion = result.Exhaustion;
-        
-        this._Armor = {
+
+        this.armor = {
             ID: result.Armor.ID,
             Name: result.Armor.Name,
-            Bonus: result.Armor.Bonus
+            Bonus: result.Armor.Bonus,
         };
 
-        this._Campaign = {
+        this.campaign = {
             ID: result.Campaign.ID,
-            Name: result.Campaign.Name
+            Name: result.Campaign.Name,
         };
 
-        this._CharacterClass = {
+        this.characterClass = {
             ID: result.CharacterClass.ID,
             Name: result.CharacterClass.Name,
-            BaseHitDie: { 
+            BaseHitDie: {
                 ID: result.CharacterClass.HitDie.ID,
                 Name: result.CharacterClass.HitDie.Name,
-                Value: result.CharacterClass.HitDie.Value
-            }
+                Value: result.CharacterClass.HitDie.Value,
+            },
         };
 
-        this._Player =  {
+        this.player =  {
             ID: result.Player.ID,
             Username: result.Player.Username,
             Password: result.Player.Password,
             Email: result.Player.Email,
             FirstName: result.Player.FirstName,
-            LastName: result.Player.LastName
+            LastName: result.Player.LastName,
         };
 
-        this._Race = {
+        this.race = {
             ID: result.Race.ID,
-            Name: result.Race.Name
+            Name: result.Race.Name,
         };
 
-        this._Shield = {
+        this.shield = {
             ID: result.Shield.ID,
             Name: result.Shield.Name,
-            Bonus: result.Shield.Bonus
-        }
+            Bonus: result.Shield.Bonus,
+        };
 
-        this._Feats = result.CharacterFeats.map(cf => {
+        this.feats = result.CharacterFeats.map((cf) => {
             return {
                 ID: cf.ID,
                 Text: cf.Feat.Text,
-                Bonuses: cf.Feat.FeatBonuses.map(b => {
+                Bonuses: cf.Feat.FeatBonuses.map((b) => {
                     return {
                         ID: b.ID,
                         StatType: StatType[b.StatType.Type],
-                        Modifier: b.Bonus.Modifier
-                    }
-                })
-            }
+                        Modifier: b.Bonus.Modifier,
+                    };
+                }),
+            };
         });
 
-        this._Languages = result.CharacterLanguages.map(cl => {
+        this.languages = result.CharacterLanguages.map((cl) => {
             return {
                 ID: cl.ID,
-                Name: cl.Language.Name
-            }
+                Name: cl.Language.Name,
+            };
         });
 
-        this._Powers = result.CharacterPowers.map(cp => {
+        this.powers = result.CharacterPowers.map((cp) => {
             return {
                 ID: cp.ID,
                 Name: cp.Power.Name,
-                Level: cp.Power.Level
-            }
+                Level: cp.Power.Level,
+            };
         });
 
-        this._Tricks = result.CharacterTricks.map(ct => {
+        this.tricks = result.CharacterTricks.map((ct) => {
             return {
                 ID: ct.ID,
-                Name: ct.Trick.Name
-            }
+                Name: ct.Trick.Name,
+            };
         });
     }
-
 }

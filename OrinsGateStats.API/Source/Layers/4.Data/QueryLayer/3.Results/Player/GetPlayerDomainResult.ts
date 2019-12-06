@@ -2,11 +2,11 @@ import { IResult } from '../../../../../Infrastructure/Interfaces/IResult';
 import { PlayerDomainCharacterResult } from './DomainSubResults/PlayerDomainCharacterResult';
 
 export class GetPlayerDomainResult implements IResult {
-    ID: number;
-    Username: string;
-    Password: string;
-    Email: string;
-    FirstName: string;
-    LastName: string;
-    Characters: PlayerDomainCharacterResult[];
+    public ID: number;
+    public Username: string;
+    public Password: string;
+    public Email: string;
+    public FirstName: string;
+    public LastName: string;
+    public Characters: PlayerDomainCharacterResult[];
 }
