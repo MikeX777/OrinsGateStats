@@ -1,15 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { TBCharacterTrick } from "./TBCharacterTrick";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBCharacterTrick } from './TBCharacterTrick';
 
 @Entity()
 export class TBTrick {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
-    @OneToMany(() => TBCharacterTrick, characterTrick => characterTrick.Trick)
-    CharacterTricks: TBCharacterTrick[];
+    @OneToMany(() => TBCharacterTrick, (characterTrick) => characterTrick.Trick)
+    public CharacterTricks: TBCharacterTrick[];
 }

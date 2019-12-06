@@ -1,15 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { TBFeatBonus } from "./TBFeatBonus";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBFeatBonus } from './TBFeatBonus';
 
 @Entity()
 export class TBStatType {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Type: string;
+    public Type: string;
 
-    @OneToMany(() => TBFeatBonus, featBonus => featBonus.StatType)
-    FeatBonuses: TBFeatBonus[];
+    @OneToMany(() => TBFeatBonus, (featBonus) => featBonus.StatType)
+    public FeatBonuses: TBFeatBonus[];
 }

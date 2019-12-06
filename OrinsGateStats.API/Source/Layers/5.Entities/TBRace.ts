@@ -1,15 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TBCharacter } from './TBCharacter';
 
 @Entity()
 export class TBRace {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
-    @OneToMany(() => TBCharacter, character => character.Race)
-    Characters: TBCharacter[];
+    @OneToMany(() => TBCharacter, (character) => character.Race)
+    public Characters: TBCharacter[];
 }

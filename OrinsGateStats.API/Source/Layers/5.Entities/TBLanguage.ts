@@ -1,15 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TBCharacterLanguage } from './TBCharacterLanguage';
 
 @Entity()
 export class TBLanguage {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
-    @OneToMany(() => TBCharacterLanguage, characterLanguage => characterLanguage.Language)
-    CharacterLanguages: TBCharacterLanguage[];
+    @OneToMany(() => TBCharacterLanguage, (characterLanguage) => characterLanguage.Language)
+    public CharacterLanguages: TBCharacterLanguage[];
 }

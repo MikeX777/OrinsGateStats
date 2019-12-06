@@ -1,138 +1,138 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId, OneToMany, JoinColumn } from 'typeorm';
-import { TBRace } from './TBRace';
-import { TBCharacterClass } from './TBCharacterClass';
-import { TBCampaign } from './TBCampaign';
-import { TBPlayer } from './TBPlayer';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, RelationId } from 'typeorm';
 import { TBArmor } from './TBArmor';
-import { TBShield } from './TBShield';
-import { TBCharacterLanguage } from './TBCharacterLanguage';
+import { TBCampaign } from './TBCampaign';
+import { TBCharacterClass } from './TBCharacterClass';
 import { TBCharacterFeat } from './TBCharacterFeat';
-import { TBCharacterTrick } from './TBCharacterTrick';
+import { TBCharacterLanguage } from './TBCharacterLanguage';
 import { TBCharacterPower } from './TBCharacterPower';
+import { TBCharacterTrick } from './TBCharacterTrick';
+import { TBPlayer } from './TBPlayer';
+import { TBRace } from './TBRace';
+import { TBShield } from './TBShield';
 
 @Entity()
 export class TBCharacter {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
-    
-    @Column()
-    Conscious: boolean;
+    public Name: string;
 
     @Column()
-    Alive: boolean;
+    public Conscious: boolean;
 
     @Column()
-    Stable: boolean;
+    public Alive: boolean;
 
     @Column()
-    MaxHealth: number;
+    public Stable: boolean;
 
     @Column()
-    CurrentHealth: number;
+    public MaxHealth: number;
 
     @Column()
-    Strength: number;
+    public CurrentHealth: number;
 
     @Column()
-    Dexterity: number;
+    public Strength: number;
 
     @Column()
-    Constitution: number;
+    public Dexterity: number;
 
     @Column()
-    Intelligence: number;
+    public Constitution: number;
 
     @Column()
-    Wisdom: number;
+    public Intelligence: number;
 
     @Column()
-    Charisma: number;
+    public Wisdom: number;
 
     @Column()
-    ProficiencyBonus: number;
+    public Charisma: number;
 
     @Column()
-    Speed: number;
+    public ProficiencyBonus: number;
 
     @Column()
-    Copper: number;
+    public Speed: number;
 
     @Column()
-    Silver: number;
+    public Copper: number;
 
     @Column()
-    Gold: number;
+    public Silver: number;
 
     @Column()
-    MaxHitDice: number;
+    public Gold: number;
 
     @Column()
-    CurrentHitDice: number;
+    public MaxHitDice: number;
 
     @Column()
-    Exhaustion: number;
+    public CurrentHitDice: number;
 
-    @ManyToOne(() => TBRace, race => race.Characters)
+    @Column()
+    public Exhaustion: number;
+
+    @ManyToOne(() => TBRace, (race) => race.Characters)
     @JoinColumn({ name: 'RaceID'})
-    Race: TBRace;
+    public Race: TBRace;
 
     @Column()
     @RelationId((Character: TBCharacter) => Character.Race)
-    RaceID: number;
+    public RaceID: number;
 
-    @ManyToOne(() => TBCharacterClass, characterClass => characterClass.Characters)
+    @ManyToOne(() => TBCharacterClass, (characterClass) => characterClass.Characters)
     @JoinColumn({ name: 'CharacterClassID' })
-    CharacterClass: TBCharacterClass;
+    public CharacterClass: TBCharacterClass;
 
     @Column()
     @RelationId((Character: TBCharacter) => Character.CharacterClass)
-    CharacterClassID: number;
+    public CharacterClassID: number;
 
-    @ManyToOne(() => TBCampaign, campaign => campaign.Characters)
+    @ManyToOne(() => TBCampaign, (campaign) => campaign.Characters)
     @JoinColumn({ name: 'CampaignID' })
-    Campaign: TBCampaign;
+    public Campaign: TBCampaign;
 
     @Column()
     @RelationId((Character: TBCharacter) => Character.Campaign)
-    CampaignID: number;
+    public CampaignID: number;
 
-    @ManyToOne(() => TBPlayer, player => player.Characters)
+    @ManyToOne(() => TBPlayer, (player) => player.Characters)
     @JoinColumn({ name: 'PlayerID' })
-    Player: TBPlayer;
+    public Player: TBPlayer;
 
     @Column()
     @RelationId((Character: TBCharacter) => Character.Player)
-    PlayerID: number;
+    public PlayerID: number;
 
-    @ManyToOne(() => TBArmor, armor => armor.Characters)
+    @ManyToOne(() => TBArmor, (armor) => armor.Characters)
     @JoinColumn({ name: 'ArmorID' })
-    Armor: TBArmor;
+    public Armor: TBArmor;
 
     @Column()
     @RelationId((Character: TBCharacter) => Character.Armor)
-    ArmorID: number;
+    public ArmorID: number;
 
-    @ManyToOne(() => TBShield, shield => shield.Characters)
+    @ManyToOne(() => TBShield, (shield) => shield.Characters)
     @JoinColumn({ name: 'ShieldID' })
-    Shield: TBShield;
+    public Shield: TBShield;
 
     @Column()
     @RelationId((Character: TBCharacter) => Character.Shield)
-    ShieldID: number;
+    public ShieldID: number;
 
-    @OneToMany(() => TBCharacterLanguage, characterLanguage => characterLanguage.Character, { onDelete: 'CASCADE' })
-    CharacterLanguages: TBCharacterLanguage[];
+    @OneToMany(() => TBCharacterLanguage, (characterLanguage) => characterLanguage.Character, { onDelete: 'CASCADE' })
+    public CharacterLanguages: TBCharacterLanguage[];
 
-    @OneToMany(() => TBCharacterFeat, characterFeat => characterFeat.Character, { onDelete: 'CASCADE' })
-    CharacterFeats: TBCharacterFeat[];
+    @OneToMany(() => TBCharacterFeat, (characterFeat) => characterFeat.Character, { onDelete: 'CASCADE' })
+    public CharacterFeats: TBCharacterFeat[];
 
-    @OneToMany(() => TBCharacterTrick, characterTrick => characterTrick.Character, { onDelete: 'CASCADE' })
-    CharacterTricks: TBCharacterTrick[];
+    @OneToMany(() => TBCharacterTrick, (characterTrick) => characterTrick.Character, { onDelete: 'CASCADE' })
+    public CharacterTricks: TBCharacterTrick[];
 
-    @OneToMany(() => TBCharacterPower, characterPower => characterPower.Character, { onDelete: 'CASCADE' })
-    CharacterPowers: TBCharacterPower[];
+    @OneToMany(() => TBCharacterPower, (characterPower) => characterPower.Character, { onDelete: 'CASCADE' })
+    public CharacterPowers: TBCharacterPower[];
 }

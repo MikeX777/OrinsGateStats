@@ -1,26 +1,26 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, RelationId, JoinColumn, Column } from "typeorm";
-import { TBCharacter } from "./TBCharacter";
-import { TBTrick } from "./TBTrick";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm';
+import { TBCharacter } from './TBCharacter';
+import { TBTrick } from './TBTrick';
 
 @Entity()
 export class TBCharacterTrick {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
-    @ManyToOne(() => TBCharacter, character => character.CharacterTricks)
+    @ManyToOne(() => TBCharacter, (character) => character.CharacterTricks)
     @JoinColumn({ name: 'CharacterID' })
-    Character: TBCharacter;
+    public Character: TBCharacter;
 
     @Column()
     @RelationId((CharacterTrick: TBCharacterTrick) => CharacterTrick.Character)
-    CharacterID: number;
+    public CharacterID: number;
 
-    @ManyToOne(() => TBTrick, trick => trick.CharacterTricks)
+    @ManyToOne(() => TBTrick, (trick) => trick.CharacterTricks)
     @JoinColumn({ name: 'TrickID' })
-    Trick: TBTrick;
+    public Trick: TBTrick;
 
     @Column()
     @RelationId((CharacterTrick: TBCharacterTrick) => CharacterTrick.Trick)
-    TrickID: number;
+    public TrickID: number;
 }

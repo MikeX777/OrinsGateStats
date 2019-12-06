@@ -1,15 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { TBFeatBonus } from "./TBFeatBonus";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBFeatBonus } from './TBFeatBonus';
 
 @Entity()
 export class TBBonus {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Modifier: number;
+    public Modifier: number;
 
-    @OneToMany(() => TBFeatBonus, featBonus => featBonus.Bonus)
-    FeatBonuses: TBFeatBonus[];
+    @OneToMany(() => TBFeatBonus, (featBonus) => featBonus.Bonus)
+    public FeatBonuses: TBFeatBonus[];
 }

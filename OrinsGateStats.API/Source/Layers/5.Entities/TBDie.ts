@@ -1,18 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TBCharacterClass } from './TBCharacterClass';
 
 @Entity()
 export class TBDie {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
     @Column()
-    Value: number;
+    public Value: number;
 
-    @OneToMany(() => TBCharacterClass, characterClass => characterClass.HitDie)
-    CharacterClassHitDice: TBCharacterClass[];
+    @OneToMany(() => TBCharacterClass, (characterClass) => characterClass.HitDie)
+    public CharacterClassHitDice: TBCharacterClass[];
 }

@@ -1,18 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { TBCharacterPower } from "./TBCharacterPower";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBCharacterPower } from './TBCharacterPower';
 
 @Entity()
 export class TBPower {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
     @Column()
-    Level: number
+    public Level: number;
 
-    @OneToMany(() => TBCharacterPower, characterPower => characterPower.Power)
-    CharacterPowers: TBCharacterPower[];
+    @OneToMany(() => TBCharacterPower, (characterPower) => characterPower.Power)
+    public CharacterPowers: TBCharacterPower[];
 }

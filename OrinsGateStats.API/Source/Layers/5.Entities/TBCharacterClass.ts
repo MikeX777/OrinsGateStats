@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId, OneToMany, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, RelationId } from 'typeorm';
 import { TBCharacter } from './TBCharacter';
 import { TBDie } from './TBDie';
 
@@ -6,19 +6,19 @@ import { TBDie } from './TBDie';
 export class TBCharacterClass {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
-    @ManyToOne(() => TBDie, die => die.CharacterClassHitDice)
+    @ManyToOne(() => TBDie, (die) => die.CharacterClassHitDice)
     @JoinColumn({ name: 'HitDieID' })
-    HitDie: TBDie;
+    public HitDie: TBDie;
 
     @Column()
     @RelationId((CharacterClass: TBCharacterClass) => CharacterClass.HitDie)
-    HitDieID: number;
+    public HitDieID: number;
 
-    @OneToMany(() => TBCharacter, character => character.CharacterClass)
-    Characters: TBCharacter[];
+    @OneToMany(() => TBCharacter, (character) => character.CharacterClass)
+    public Characters: TBCharacter[];
 }

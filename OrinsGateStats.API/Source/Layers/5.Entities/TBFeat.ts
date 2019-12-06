@@ -1,19 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { TBFeatBonus } from "./TBFeatBonus";
-import { TBCharacterFeat } from "./TBCharacterFeat";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBCharacterFeat } from './TBCharacterFeat';
+import { TBFeatBonus } from './TBFeatBonus';
 
 @Entity()
 export class TBFeat {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Text: string;
+    public Text: string;
 
-    @OneToMany(() => TBFeatBonus, featBonus => featBonus.Feat)
-    FeatBonuses: TBFeatBonus[];
+    @OneToMany(() => TBFeatBonus, (featBonus) => featBonus.Feat)
+    public FeatBonuses: TBFeatBonus[];
 
-    @OneToMany(() => TBCharacterFeat, characterFeat => characterFeat.Feat)
-    CharacterFeats: TBCharacterFeat[];
+    @OneToMany(() => TBCharacterFeat, (characterFeat) => characterFeat.Feat)
+    public CharacterFeats: TBCharacterFeat[];
 }

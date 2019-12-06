@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, RelationId, JoinColumn, Column } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm';
 import { TBCharacter } from './TBCharacter';
 import { TBLanguage } from './TBLanguage';
 
@@ -6,21 +6,21 @@ import { TBLanguage } from './TBLanguage';
 export class TBCharacterLanguage {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
-    @ManyToOne(() => TBCharacter, character => character.CharacterLanguages)
+    @ManyToOne(() => TBCharacter, (character) => character.CharacterLanguages)
     @JoinColumn({ name: 'CharacterID' })
-    Character: TBCharacter;
+    public Character: TBCharacter;
 
     @Column()
     @RelationId((CharacterLanguage: TBCharacterLanguage) => CharacterLanguage.Character)
-    CharacterID: number;
+    public CharacterID: number;
 
-    @ManyToOne(() => TBLanguage, language => language.CharacterLanguages)
+    @ManyToOne(() => TBLanguage, (language) => language.CharacterLanguages)
     @JoinColumn({ name: 'LanguageID' })
-    Language: TBLanguage;
+    public Language: TBLanguage;
 
     @Column()
     @RelationId((CharacterLanguage: TBCharacterLanguage) => CharacterLanguage.Language)
-    LanguageID: number;
+    public LanguageID: number;
 }

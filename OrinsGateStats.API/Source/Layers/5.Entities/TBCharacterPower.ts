@@ -1,26 +1,26 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, RelationId, JoinColumn, Column } from "typeorm";
-import { TBCharacter } from "./TBCharacter";
-import { TBPower } from "./TBPower";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm';
+import { TBCharacter } from './TBCharacter';
+import { TBPower } from './TBPower';
 
 @Entity()
 export class TBCharacterPower {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
-    @ManyToOne(() => TBCharacter, character => character.CharacterPowers)
+    @ManyToOne(() => TBCharacter, (character) => character.CharacterPowers)
     @JoinColumn({ name: 'CharacterID' })
-    Character: TBCharacter;
+    public Character: TBCharacter;
 
     @Column()
     @RelationId((CharacterPower: TBCharacterPower) => CharacterPower.Character)
-    CharacterID: number;
+    public CharacterID: number;
 
-    @ManyToOne(() => TBPower, power => power.CharacterPowers)
+    @ManyToOne(() => TBPower, (power) => power.CharacterPowers)
     @JoinColumn({ name: 'PowerID' })
-    Power: TBPower;
+    public Power: TBPower;
 
     @Column()
     @RelationId((CharacterPower: TBCharacterPower) => CharacterPower.Power)
-    PowerID: number;
+    public PowerID: number;
 }

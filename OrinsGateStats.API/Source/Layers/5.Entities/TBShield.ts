@@ -1,18 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TBCharacter } from './TBCharacter';
 
 @Entity()
 export class TBShield {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Name: string;
+    public Name: string;
 
     @Column()
-    Bonus: number;
+    public Bonus: number;
 
-    @OneToMany(() => TBCharacter, character => character.Shield)
-    Characters: TBCharacter[];
+    @OneToMany(() => TBCharacter, (character) => character.Shield)
+    public Characters: TBCharacter[];
 }

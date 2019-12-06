@@ -1,38 +1,38 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId, OneToMany, BeforeInsert } from 'typeorm';
-import { TBCharacter } from './TBCharacter';
-import { IsEmail } from 'class-validator';
 import { genSalt, hash } from 'bcrypt';
+import { IsEmail } from 'class-validator';
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBCharacter } from './TBCharacter';
 const SALT_COST = 16;
 
 @Entity()
 export class TBPlayer {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
     @Column()
-    Username: string;
+    public Username: string;
 
     @Column()
-    Password: string;
+    public Password: string;
 
     @Column()
     @IsEmail()
-    Email: string;
+    public Email: string;
 
     @Column()
-    FirstName: string;
+    public FirstName: string;
 
     @Column()
-    LastName: string;
+    public LastName: string;
 
-    @OneToMany(() => TBCharacter, character => character.Player, { onDelete: 'CASCADE' })
-    Characters: TBCharacter[];
+    @OneToMany(() => TBCharacter, (character) => character.Player, { onDelete: 'CASCADE' })
+    public Characters: TBCharacter[];
 
     @BeforeInsert()
-    async SetPassword() {
+    public async SetPassword() {
         const salt = await genSalt(SALT_COST);
-        this.Password = await hash(this.Password, salt); 
+        this.Password = await hash(this.Password, salt);
     }
 
 }

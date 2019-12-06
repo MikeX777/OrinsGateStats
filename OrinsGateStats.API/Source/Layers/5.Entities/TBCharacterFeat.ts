@@ -1,26 +1,26 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, RelationId, JoinColumn, Column } from "typeorm";
-import { TBCharacter } from "./TBCharacter";
-import { TBFeat } from "./TBFeat";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm';
+import { TBCharacter } from './TBCharacter';
+import { TBFeat } from './TBFeat';
 
 @Entity()
-export class TBCharacterFeat{
+export class TBCharacterFeat {
 
     @PrimaryGeneratedColumn()
-    ID: number;
+    public ID: number;
 
-    @ManyToOne(() => TBCharacter, character => character.CharacterFeats)
+    @ManyToOne(() => TBCharacter, (character) => character.CharacterFeats)
     @JoinColumn({ name: 'CharacterID' })
-    Character: TBCharacter;
+    public Character: TBCharacter;
 
     @Column()
     @RelationId((CharacterFeat: TBCharacterFeat) => CharacterFeat.Character)
-    CharacterID: number;
+    public CharacterID: number;
 
-    @ManyToOne(() => TBFeat, feat => feat.CharacterFeats)
+    @ManyToOne(() => TBFeat, (feat) => feat.CharacterFeats)
     @JoinColumn({ name: 'FeatID' })
-    Feat: TBFeat;
+    public Feat: TBFeat;
 
     @Column()
     @RelationId((CharacterFeat: TBCharacterFeat) => CharacterFeat.Feat)
-    FeatID: number;
+    public FeatID: number;
 }
