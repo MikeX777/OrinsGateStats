@@ -1,6 +1,6 @@
-import { RegisterPlayerRequest } from '../../1.Controllers/Requests/Player/RegisterPlayerRequest';
-import { LoginRequest } from '../../1.Controllers/Requests/Player/LoginRequest';
 import { CreateCharacterRequest } from '../../1.Controllers/Requests/Player/CreateCharacterRequest';
+import { LoginRequest } from '../../1.Controllers/Requests/Player/LoginRequest';
+import { RegisterPlayerRequest } from '../../1.Controllers/Requests/Player/RegisterPlayerRequest';
 import { PlayerDashboardDto } from '../DtoModels/Player/PlayerDashboardDto';
 
 export interface IPlayerService {

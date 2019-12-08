@@ -15,6 +15,7 @@ export class CreateCharacterRequest {
     public Copper: number;
     public Silver: number;
     public Gold: number;
+    public Platinum: number;
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustion: number;

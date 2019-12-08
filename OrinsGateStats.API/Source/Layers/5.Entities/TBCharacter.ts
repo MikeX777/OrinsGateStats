@@ -65,6 +65,9 @@ export class TBCharacter {
     public Gold: number;
 
     @Column()
+    public Platinum: number;
+
+    @Column()
     public MaxHitDice: number;
 
     @Column()

@@ -36,6 +36,7 @@ export class Character extends ModelBase<number> {
     public Copper: number;
     public Silver: number;
     public Gold: number;
+    public Platinum: number;
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustsion: number;
@@ -153,6 +154,7 @@ export class Character extends ModelBase<number> {
             Copper: this.Copper,
             Silver: this.Silver,
             Gold: this.Gold,
+            Platinum: this.Platinum,
             MaxHitDice: this.MaxHitDice,
             CurrentHitDice: this.CurrentHitDice,
             Exhaustion: this.Exhaustsion,
@@ -161,6 +163,7 @@ export class Character extends ModelBase<number> {
             PlayerFirstName: this.Player?.FirstName ?? '',
             PlayerLastName: this.Player?.LastName ?? '',
             RaceName: this.Race?.Name ?? '',
+            PlayerID: this.player.ID,
         };
 
         return dashboard;
@@ -198,6 +201,7 @@ export class Character extends ModelBase<number> {
         this.Copper = result.Copper;
         this.Silver = result.Silver;
         this.Gold = result.Gold;
+        this.Platinum = result.Platinum;
         this.MaxHitDice = result.MaxHitDice;
         this.CurrentHitDice = result.CurrentHitDice;
         this.Exhaustsion = result.Exhaustion;

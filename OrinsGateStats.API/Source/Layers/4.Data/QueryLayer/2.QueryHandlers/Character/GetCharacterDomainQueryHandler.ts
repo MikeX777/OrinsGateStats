@@ -1,9 +1,10 @@
+import { createQueryBuilder } from 'typeorm';
 import { QueryHandlerBase } from '../../../../../Infrastructure/BaseClasses/QueryHandlerBase';
 import { GetCharacterDomainQuery } from '../../1.Queries/Character/GetCharacterDomainQuery';
 import { GetCharacterDomainResult } from '../../3.Results/Character/GetCharacterDomainResult';
-import { createQueryBuilder } from 'typeorm';
 
-export class GetCharacterDomainQueryHandler extends QueryHandlerBase<GetCharacterDomainQuery, GetCharacterDomainResult> {
+export class GetCharacterDomainQueryHandler extends
+    QueryHandlerBase<GetCharacterDomainQuery, GetCharacterDomainResult> {
 
     public async Execute(query: GetCharacterDomainQuery): Promise<GetCharacterDomainResult> {
         const character = await createQueryBuilder<GetCharacterDomainResult>('TBCharacter')

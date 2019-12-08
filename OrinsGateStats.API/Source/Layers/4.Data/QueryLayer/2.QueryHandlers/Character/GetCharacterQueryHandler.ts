@@ -26,6 +26,7 @@ export class GetCharacterQueryHandler extends QueryHandlerBase<GetCharacterQuery
             Copper: character.Copper,
             Silver: character.Silver,
             Gold: character.Silver,
+            Platinum: character.Platinum,
             MaxHitDice: character.MaxHitDice,
             CurrentHitDice: character.CurrentHitDice,
             Exhaustion: character.Exhaustion,

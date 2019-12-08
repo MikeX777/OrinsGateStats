@@ -17,6 +17,7 @@ export class CreateCharacterCommand {
     public Copper: number;
     public Silver: number;
     public Gold: number;
+    public Platinum: number;
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustion: number;
@@ -33,8 +34,8 @@ export class CreateCharacterCommand {
 
     constructor(characterName: string, conscious: boolean, alive: boolean, stable: boolean, maxHealth: number,
                 currentHealth: number, strength: number, dexterity: number, constitution: number, intelligence: number,
-                wisdom: number, charisma: number, speed: number, copper: number, silver: number,
-                gold: number, maxHitDice: number, currenthitDice: number, exhaustion: number, raceID: number,
+                wisdom: number, charisma: number, speed: number, copper: number, silver: number, gold: number,
+                platinum: number, maxHitDice: number, currenthitDice: number, exhaustion: number, raceID: number,
                 characterClassID: number, campaignID: number, playerID: number, armorID: number, shieldID: number,
                 languageIDs: number[], featIDs: number[], trickIDs: number[], powerIDs: number[]) {
             this.CharacterName = characterName;
@@ -53,6 +54,7 @@ export class CreateCharacterCommand {
             this.Copper = copper;
             this.Silver = silver;
             this.Gold = gold;
+            this.Platinum = platinum;
             this.MaxHitDice = maxHitDice;
             this.CurrentHitDice = currenthitDice;
             this.Exhaustion = exhaustion;

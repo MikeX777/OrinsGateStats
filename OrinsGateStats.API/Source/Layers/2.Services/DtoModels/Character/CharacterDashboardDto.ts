@@ -25,6 +25,7 @@ export class CharacterDashboradDto {
     public Copper: number;
     public Silver: number;
     public Gold: number;
+    public Platinum: number;
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustion: number;
@@ -33,4 +34,5 @@ export class CharacterDashboradDto {
     public PlayerFirstName: string;
     public PlayerLastName: string;
     public RaceName: string;
+    public PlayerID: number;
 }

@@ -50,6 +50,7 @@ export class Player extends ModelBase<number> {
             request.Copper,
             request.Silver,
             request.Gold,
+            request.Platinum,
             request.MaxHitDice,
             request.CurrentHitDice,
             request.Exhaustion,
@@ -85,6 +86,7 @@ export class Player extends ModelBase<number> {
             Copper: characterResult.Copper,
             Silver: characterResult.Silver,
             Gold: characterResult.Gold,
+            Platinum: characterResult.Platinum,
             MaxHitDice: characterResult.MaxHitDice,
             CurrentHitDice: characterResult.CurrentHitDice,
             Exhaustsion: characterResult.Exhaustion,
@@ -122,6 +124,7 @@ export class Player extends ModelBase<number> {
                     Copper: character.Copper,
                     Silver: character.Silver,
                     Gold: character.Gold,
+                    Platinum: character.Platinum,
                     MaxHitDice: character.MaxHitDice,
                     CurrentHitDice: character.CurrentHitDice,
                     Exhaustsion: character.Exhaustsion,
@@ -155,7 +158,7 @@ export class Player extends ModelBase<number> {
         this.LastName = result.LastName;
 
         this.characters = result.Characters.map((c) => {
-            return {
+            const character: Sub_Character = {
                 ID: c.ID,
                 Name: c.Name,
                 Conscious: c.Conscious,
@@ -173,6 +176,7 @@ export class Player extends ModelBase<number> {
                 Copper: c.Copper,
                 Silver: c.Silver,
                 Gold: c.Gold,
+                Platinum: c.Platinum,
                 MaxHitDice: c.MaxHitDice,
                 CurrentHitDice: c.CurrentHitDice,
                 Exhaustsion: c.Exhaustion,
@@ -187,6 +191,7 @@ export class Player extends ModelBase<number> {
                 TrickIDs: c.TrickIDs,
                 PowerIDs: c.PowerIDs,
             };
+            return character;
         });
     }
 }

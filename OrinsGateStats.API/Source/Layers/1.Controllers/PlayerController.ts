@@ -139,6 +139,7 @@ export class PlayerController {
             Copper: request.body.Copper,
             Silver: request.body.Silver,
             Gold: request.body.Gold,
+            Platinum: request.body.Platinum,
             MaxHitDice: request.body.MaxHitDice,
             CurrentHitDice: request.body.CurrentHitDice,
             Exhaustion: request.body.Exhaustion,

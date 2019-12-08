@@ -37,6 +37,7 @@ export class CreateCharacterCommandHandler implements CommandHandlerBase<CreateC
             Copper: command.Copper,
             Silver: command.Silver,
             Gold: command.Gold,
+            Platinum: command.Platinum,
             MaxHitDice: command.MaxHitDice,
             CurrentHitDice: command.CurrentHitDice,
             Exhaustion: command.Exhaustion,
