@@ -1,4 +1,4 @@
-export class CharacterDomainCampaignResult {
+export class PlayerDomainCampaignResult {
 
     public ID: number;
     public Name: string;

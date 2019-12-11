@@ -9,6 +9,7 @@ import { CreateCharacterCommand } from '../../4.Data/ComandLayer/1.Commands/Char
 import { GetPlayerDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Player/GetPlayerDomainQuery';
 import { GetPlayerDomainResult } from '../../4.Data/QueryLayer/3.Results/Player/GetPlayerDomainResult';
 import { TBCharacter } from '../../5.Entities/TBCharacter';
+import { Sub_Campaign } from './SubObjects/Sub_Campaign';
 import { Sub_Character } from './SubObjects/Sub_Character';
 
 export class Player extends ModelBase<number> {
@@ -26,6 +27,14 @@ export class Player extends ModelBase<number> {
     }
     public set Characters(v: Sub_Character[]) {
         this.characters = v;
+    }
+
+    private ownedCampaigns: Sub_Campaign[];
+    public get OwnedCampaigns(): Sub_Campaign[] {
+        return this.ownedCampaigns;
+    }
+    public set OwnedCampaigns(v: Sub_Campaign[]) {
+        this.ownedCampaigns = v;
     }
 
     constructor(id: number, queryContainer: QueryContainer, commandContainer: CommandContainer, result?: IResult) {
@@ -128,6 +137,9 @@ export class Player extends ModelBase<number> {
                     MaxHitDice: character.MaxHitDice,
                     CurrentHitDice: character.CurrentHitDice,
                     Exhaustsion: character.Exhaustsion,
+                    RaceName: character.Race.Name,
+                    CharacterClassName: character.CharacterClass.Name,
+                    CampaignName: character.Campaign.Name,
                 };
                 return characterDto;
             }),
@@ -180,9 +192,20 @@ export class Player extends ModelBase<number> {
                 MaxHitDice: c.MaxHitDice,
                 CurrentHitDice: c.CurrentHitDice,
                 Exhaustsion: c.Exhaustion,
-                RaceID: c.RaceID,
-                CharacterClassID: c.CharacterClassID,
-                CampaignID: c.CampaignID,
+                Race: {
+                    ID: c.Race?.ID,
+                    Name: c.Race?.Name,
+                },
+                CharacterClass: {
+                    ID: c.CharacterClass?.ID,
+                    Name: c.CharacterClass?.Name,
+                    HitDieID: c.CharacterClass?.HitDieID,
+                },
+                Campaign: {
+                    ID: c.Campaign?.ID,
+                    Name: c.Campaign?.Name,
+                    DungeonMasterID: c.Campaign?.DungeonMasterID,
+                },
                 PlayerID: c.PlayerID,
                 ArmorID: c.ArmorID,
                 ShieldID: c.ShieldID,
@@ -192,6 +215,15 @@ export class Player extends ModelBase<number> {
                 PowerIDs: c.PowerIDs,
             };
             return character;
+        });
+
+        this.ownedCampaigns = result.OwnedCampaigns.map((oc) => {
+            const ownedCampaign: Sub_Campaign = {
+                ID: oc.ID,
+                Name: oc.Name,
+                DungeonMasterID: oc.DungeonMasterID,
+            };
+            return ownedCampaign;
         });
     }
 }

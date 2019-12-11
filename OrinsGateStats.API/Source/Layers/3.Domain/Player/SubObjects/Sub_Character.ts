@@ -1,3 +1,7 @@
+import { Sub_Campaign } from './Sub_Campaign';
+import { Sub_CharacterClass } from './Sub_CharacterClass';
+import { Sub_Race } from './Sub_Race';
+
 export class Sub_Character {
 
     public ID: number;
@@ -21,9 +25,9 @@ export class Sub_Character {
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustsion: number;
-    public RaceID: number;
-    public CharacterClassID: number;
-    public CampaignID: number;
+    public Race: Sub_Race;
+    public CharacterClass: Sub_CharacterClass;
+    public Campaign: Sub_Campaign;
     public PlayerID: number;
     public ArmorID: number;
     public ShieldID: number;

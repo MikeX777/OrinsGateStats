@@ -21,4 +21,7 @@ export class PlayerDashboardCharacterDto {
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustsion: number;
+    public RaceName: string;
+    public CharacterClassName: string;
+    public CampaignName: string;
 }

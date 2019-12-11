@@ -1,3 +1,7 @@
+import { PlayerDomainCampaignResult } from './PlayerDomainCampaignResult';
+import { PlayerDomainCharacterClassResult } from './PlayerDomainCharacterClassResult';
+import { PlayerDomainRaceResult } from './PlayerDomainRaceResult';
+
 export class PlayerDomainCharacterResult {
 
     public ID: number;
@@ -21,9 +25,9 @@ export class PlayerDomainCharacterResult {
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustion: number;
-    public RaceID: number;
-    public CharacterClassID: number;
-    public CampaignID: number;
+    public Race: PlayerDomainRaceResult;
+    public CharacterClass: PlayerDomainCharacterClassResult;
+    public Campaign: PlayerDomainCampaignResult;
     public PlayerID: number;
     public ArmorID: number;
     public ShieldID: number;

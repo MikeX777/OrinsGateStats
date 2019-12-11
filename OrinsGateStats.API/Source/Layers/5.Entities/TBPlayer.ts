@@ -1,6 +1,7 @@
 import { genSalt, hash } from 'bcrypt';
 import { IsEmail } from 'class-validator';
 import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TBCampaign } from './TBCampaign';
 import { TBCharacter } from './TBCharacter';
 const SALT_COST = 16;
 
@@ -28,6 +29,9 @@ export class TBPlayer {
 
     @OneToMany(() => TBCharacter, (character) => character.Player, { onDelete: 'CASCADE' })
     public Characters: TBCharacter[];
+
+    @OneToMany(() => TBCampaign, (campaign) => campaign.DungeonMaster)
+    public OwnedCampaigns: TBCampaign[];
 
     @BeforeInsert()
     public async SetPassword() {
