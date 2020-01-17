@@ -65,7 +65,6 @@ export class Player extends ModelBase<number> {
             request.Exhaustion,
             request.RaceID,
             request.CharacterClassID,
-            request.CampaignID,
             request.PlayerID,
             request.ArmorID,
             request.ShieldID,

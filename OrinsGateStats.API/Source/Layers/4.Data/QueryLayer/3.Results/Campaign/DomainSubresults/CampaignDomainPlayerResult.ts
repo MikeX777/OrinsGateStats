@@ -1,4 +1,4 @@
-export class Sub_Player {
+export class CampaignDomainPlayerResult {
 
     public ID: number;
     public Username: string;

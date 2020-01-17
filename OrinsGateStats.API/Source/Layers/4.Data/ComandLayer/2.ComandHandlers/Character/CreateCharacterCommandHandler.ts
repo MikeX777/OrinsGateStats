@@ -44,7 +44,6 @@ export class CreateCharacterCommandHandler implements CommandHandlerBase<CreateC
             PlayerID: command.PlayerID,
             RaceID: command.RaceID,
             CharacterClassID: command.CharacterClassID,
-            CampaignID: command.CampaignID,
             ArmorID: command.ArmorID,
             ShieldID: command.ShieldID,
         });

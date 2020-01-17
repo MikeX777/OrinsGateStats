@@ -213,9 +213,9 @@ export class Character extends ModelBase<number> {
         };
 
         this.campaign = {
-            ID: result.Campaign.ID,
-            Name: result.Campaign.Name,
-            DungeonMasterID: result.Campaign.DungeonMasterID,
+            ID: result.Campaign?.ID,
+            Name: result.Campaign?.Name,
+            DungeonMasterID: result.Campaign?.DungeonMasterID,
         };
 
         this.characterClass = {

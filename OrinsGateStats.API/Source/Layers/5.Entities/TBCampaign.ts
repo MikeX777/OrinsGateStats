@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, RelationId } from 'typeorm';
+import { TBCampaignRequest } from './TBCampaignRequest';
 import { TBCharacter } from './TBCharacter';
 import { TBPlayer } from './TBPlayer';
 
@@ -19,7 +20,10 @@ export class TBCampaign {
     public DungeonMaster: TBPlayer;
 
     @Column()
-    @RelationId((Champaign: TBCampaign) => Champaign.DungeonMaster)
+    @RelationId((Campaign: TBCampaign) => Campaign.DungeonMaster)
     public DungeonMasterID: number;
+
+    @OneToMany(() => TBCampaignRequest, (campaignRequest) => campaignRequest.Campaign)
+    public RequestedCharacters: TBCampaignRequest[];
 
 }

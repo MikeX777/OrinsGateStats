@@ -23,7 +23,6 @@ export class CreateCharacterCommand {
     public Exhaustion: number;
     public RaceID: number;
     public CharacterClassID: number;
-    public CampaignID: number;
     public PlayerID: number;
     public ArmorID: number;
     public ShieldID: number;
@@ -36,7 +35,7 @@ export class CreateCharacterCommand {
                 currentHealth: number, strength: number, dexterity: number, constitution: number, intelligence: number,
                 wisdom: number, charisma: number, speed: number, copper: number, silver: number, gold: number,
                 platinum: number, maxHitDice: number, currenthitDice: number, exhaustion: number, raceID: number,
-                characterClassID: number, campaignID: number, playerID: number, armorID: number, shieldID: number,
+                characterClassID: number, playerID: number, armorID: number, shieldID: number,
                 languageIDs: number[], featIDs: number[], trickIDs: number[], powerIDs: number[]) {
             this.CharacterName = characterName;
             this.Conscious = conscious;
@@ -60,7 +59,6 @@ export class CreateCharacterCommand {
             this.Exhaustion = exhaustion;
             this.RaceID = raceID;
             this.CharacterClassID = characterClassID;
-            this.CampaignID = campaignID;
             this.PlayerID = playerID;
             this.ArmorID = armorID;
             this.ShieldID = shieldID;

@@ -1,6 +1,16 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, RelationId } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToMany,
+    OneToOne,
+    PrimaryGeneratedColumn,
+    RelationId,
+} from 'typeorm';
 import { TBArmor } from './TBArmor';
 import { TBCampaign } from './TBCampaign';
+import { TBCampaignRequest } from './TBCampaignRequest';
 import { TBCharacterClass } from './TBCharacterClass';
 import { TBCharacterFeat } from './TBCharacterFeat';
 import { TBCharacterLanguage } from './TBCharacterLanguage';
@@ -96,7 +106,7 @@ export class TBCharacter {
     @JoinColumn({ name: 'CampaignID' })
     public Campaign: TBCampaign;
 
-    @Column()
+    @Column({ nullable: true })
     @RelationId((Character: TBCharacter) => Character.Campaign)
     public CampaignID: number;
 
@@ -135,4 +145,7 @@ export class TBCharacter {
 
     @OneToMany(() => TBCharacterPower, (characterPower) => characterPower.Character, { onDelete: 'CASCADE' })
     public CharacterPowers: TBCharacterPower[];
+
+    @OneToOne(() => TBCampaignRequest, (campaignRequest) => campaignRequest.Character)
+    public CampaignRequest: TBCampaignRequest;
 }

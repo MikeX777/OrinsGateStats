@@ -1,5 +1,14 @@
-export class CreateCharacterRequest {
-    public CharacterName: string;
+import { Sub_CharacterClass } from './Sub_CharacterClass';
+import { Sub_Feat } from './Sub_Feats';
+import { Sub_Language } from './Sub_Language';
+import { Sub_Power } from './Sub_Power';
+import { Sub_Race } from './Sub_Race';
+import { Sub_Trick } from './Sub_Trick';
+
+export class Sub_Character {
+
+    public ID: number;
+    public Name: string;
     public Conscious: boolean;
     public Alive: boolean;
     public Stable: boolean;
@@ -19,13 +28,13 @@ export class CreateCharacterRequest {
     public MaxHitDice: number;
     public CurrentHitDice: number;
     public Exhaustion: number;
-    public RaceID: number;
-    public CharacterClassID: number;
+    public Race: Sub_Race;
+    public CharacterClass: Sub_CharacterClass;
     public PlayerID: number;
     public ArmorID: number;
     public ShieldID: number;
-    public LanguageIDs: number[];
-    public FeatIDs: number[];
-    public TrickIDs: number[];
-    public PowerIDs: number[];
+    public Languages: Sub_Language[];
+    public Feats: Sub_Feat[];
+    public Tricks: Sub_Trick[];
+    public Powers: Sub_Power[];
 }
