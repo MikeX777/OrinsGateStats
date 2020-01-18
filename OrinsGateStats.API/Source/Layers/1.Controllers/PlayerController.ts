@@ -28,8 +28,8 @@ export class PlayerController {
         ], this.RegisterPlayer.bind(this));
 
         this.router.post(`${this.path}login`, [
-            check('EmailOrUsername').exists(),
-            check('Password'),
+            check('emailOrUsername').exists(),
+            check('password'),
         ], this.Login.bind(this));
 
         this.router.post(`${this.path}createCharacter`, [
@@ -98,8 +98,8 @@ export class PlayerController {
         }
 
         const requestObject: LoginRequest = {
-            EmailOrUsername: request.body.EmailOrUsername,
-            Password: request.body.Password,
+            EmailOrUsername: request.body.emailOrUsername,
+            Password: request.body.password,
         };
 
         const token = await this.playerService.Login(requestObject);
