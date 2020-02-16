@@ -251,6 +251,7 @@ export class Character extends ModelBase<number> {
         this.feats = result.CharacterFeats.map((cf) => {
             return {
                 ID: cf.ID,
+                Name: cf.Feat.Name,
                 Text: cf.Feat.Text,
                 Bonuses: cf.Feat.FeatBonuses.map((b) => {
                     return {

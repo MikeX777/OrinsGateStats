@@ -9,6 +9,9 @@ export class TBFeat {
     public ID: number;
 
     @Column()
+    public Name: string;
+
+    @Column()
     public Text: string;
 
     @OneToMany(() => TBFeatBonus, (featBonus) => featBonus.Feat)

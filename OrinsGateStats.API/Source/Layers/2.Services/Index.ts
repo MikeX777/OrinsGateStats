@@ -1,3 +1,5 @@
 import { CharacterService } from './CharacterService';
+import { PlayerService } from './PlayerService';
+import { CampaignService } from './CampaignService';
 
-export { CharacterService }
+export { CharacterService, PlayerService, CampaignService }
