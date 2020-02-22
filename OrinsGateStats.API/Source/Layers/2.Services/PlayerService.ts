@@ -12,6 +12,7 @@ import { RegisterPlayerCommand } from '../4.Data/ComandLayer/1.Commands/Player/R
 import { FindPlayerByEmailOrUsernameQuery } from '../4.Data/QueryLayer/1.Queries/Player/FindPlayerByEmailOrUsernameQuery';
 import { FindPlayerByEmailOrUsernameResult } from '../4.Data/QueryLayer/3.Results/Player/FindPlayerByEmailOrUsernameResult';
 import { PlayerDashboardDto } from './DtoModels/Player/PlayerDashboardDto';
+import { PlayerToken } from './DtoModels/Player/PlayerToken';
 import { IPlayerService } from './Interfaces/Index';
 
 @injectable()
@@ -33,7 +34,7 @@ export class PlayerService implements IPlayerService {
         return await this.commandContainer.ExecuteCommand(registerPlayerCommand);
     }
 
-    public async Login(loginRequest: LoginRequest): Promise<string> {
+    public async Login(loginRequest: LoginRequest): Promise<PlayerToken> {
 
         const player = await this.queryContainer
             .ExecuteQuery<FindPlayerByEmailOrUsernameQuery, FindPlayerByEmailOrUsernameResult>(
@@ -41,7 +42,7 @@ export class PlayerService implements IPlayerService {
             );
         if (player !== undefined) {
             if (await compare(loginRequest.Password, player.Password)) {
-                return sign({ PlayerID: player.ID }, secret, { expiresIn: '4h' });
+                return { Token: sign({ PlayerID: player.ID }, secret, { expiresIn: '4h' }), ID: player.ID};
             }
         }
         return undefined;

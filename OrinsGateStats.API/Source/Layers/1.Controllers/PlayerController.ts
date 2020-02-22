@@ -102,13 +102,13 @@ export class PlayerController {
             Password: request.body.password,
         };
 
-        const token = await this.playerService.Login(requestObject);
+        const player = await this.playerService.Login(requestObject);
 
-        if (token === undefined) {
+        if (player === undefined) {
             return response.status(401).send('Password incorrect, or player not found.');
         }
 
-        return response.status(200).send({ Token: token });
+        return response.status(200).send({ Token: player.Token, PlayerID:  player.ID});
     }
 
     public async CreateCharacter(request: Request, response: Response) {
