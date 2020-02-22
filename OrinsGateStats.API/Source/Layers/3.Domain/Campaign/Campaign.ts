@@ -13,6 +13,8 @@ import { Sub_Player } from './SubObjects/Sub_Player';
 import { Sub_Power } from './SubObjects/Sub_Power';
 import { Sub_Request } from './SubObjects/Sub_Request';
 import { Sub_Trick } from './SubObjects/Sub_Trick';
+import { CampaignDashboardDto } from '../../2.Services/DtoModels/Campaign/CampaignDashboardDto/CampaignDashboardDto';
+import { CharacterDto } from '../../2.Services/DtoModels/Campaign/CampaignDashboardDto/CharacterDto';
 
 export class Campaign extends ModelBase<number> {
 
@@ -45,6 +47,42 @@ export class Campaign extends ModelBase<number> {
 
     constructor(id: number, queryContainer: QueryContainer, commandContainer: CommandContainer, result?: IResult) {
         super(id, queryContainer, commandContainer, result);
+    }
+
+    public async BuildCampaignDashboard(): Promise<CampaignDashboardDto> {
+        const dashboard: CampaignDashboardDto = {
+            ID: this.ID,
+            Name: this.Name,
+            DungeonMasterPlayerID: this.dungeonMaster.ID,
+            DungeonMasterFirstName: this.dungeonMaster.FirstName,
+            DungeonMasterLastName: this.dungeonMaster.LastName,
+            Characters: this.characters.map((character) => {
+                const characterDto: CharacterDto = {
+                    ID: character.ID,
+                    Name: character.Name,
+                    Conscious: character.Conscious,
+                    Alive: character.Alive,
+                    Stable: character.Stable,
+                    MaxHealth: character.MaxHealth,
+                    CurrentHealth: character.CurrentHealth,
+                    RaceName: character.Race.Name,
+                    CharacterClassName: character.CharacterClass.Name,
+                    PlayerID: character.PlayerID,
+                    Languages: character.Languages.map((language) => language.Name),
+                    LanguageIDs: character.Languages.map((language) => language.ID),
+                    Feats: character.Feats.map((feat) => feat.Name),
+                    FeatIDs: character.Feats.map((feat) => feat.ID),
+                    Tricks: character.Tricks.map((trick) => trick.Name),
+                    TrickIDs: character.Tricks.map((trick) => trick.ID),
+                    Powers: character.Powers.map((power) => power.Name),
+                    PowerIDs: character.Powers.map((power) => power.ID)
+                };
+
+                return characterDto;
+            })
+        };
+
+        return dashboard;
     }
 
     public async Retrieve(): Promise<boolean> {
@@ -125,6 +163,7 @@ export class Campaign extends ModelBase<number> {
                 Feats: character.Feats.map((characterFeats) => {
                     const feat: Sub_Feat = {
                         ID: characterFeats.Feat.ID,
+                        Name: characterFeats.Feat.Name,
                         Text: characterFeats.Feat.Text,
                         Bonuses: characterFeats.Feat.FeatBonuses.map((featBonus) => {
                             const bonus: Sub_Bonus = {

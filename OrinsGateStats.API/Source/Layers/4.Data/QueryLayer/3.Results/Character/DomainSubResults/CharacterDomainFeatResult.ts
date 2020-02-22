@@ -1,8 +1,9 @@
-import { CharacterDomainFeatBonusResult } from "./CharacterDomainFeatBonusResult";
+import { CharacterDomainFeatBonusResult } from './CharacterDomainFeatBonusResult';
 
 export class CharacterDomainFeatResult {
 
-    ID: number;
-    Text: string;
-    FeatBonuses: CharacterDomainFeatBonusResult[];
+    public ID: number;
+    public Name: string;
+    public Text: string;
+    public FeatBonuses: CharacterDomainFeatBonusResult[];
 }

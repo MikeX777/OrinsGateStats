@@ -1,4 +1,5 @@
 import { ICharacterService } from './ICharacterService';
 import { IPlayerService } from './IPlayerService';
+import { ICampaignService } from './ICampaignService';
 
-export { ICharacterService, IPlayerService };
+export { ICharacterService, IPlayerService, ICampaignService };
