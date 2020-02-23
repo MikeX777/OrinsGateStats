@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginRequest } from '../Requests/LoginRequest';
 import { environment } from 'src/environments/environment';
 import { GlobalService } from '../global/global.service';
+import { RegisterRequest } from '../Requests/RegisterRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class PlayerService {
 
   public GetDashboard() {
     return this.http.get(`${this.path}dashboard/${this.globalService.playerID}`);
+  }
+
+  public Register(request: RegisterRequest) {
+    return this.http.post(`${this.path}register`, request);
   }
 }

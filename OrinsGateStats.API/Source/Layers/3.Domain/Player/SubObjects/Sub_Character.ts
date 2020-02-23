@@ -24,7 +24,7 @@ export class Sub_Character {
     public Platinum: number;
     public MaxHitDice: number;
     public CurrentHitDice: number;
-    public Exhaustsion: number;
+    public Exhaustion: number;
     public Race: Sub_Race;
     public CharacterClass: Sub_CharacterClass;
     public Campaign: Sub_Campaign;

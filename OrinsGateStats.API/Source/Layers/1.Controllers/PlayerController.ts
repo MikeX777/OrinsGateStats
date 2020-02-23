@@ -16,15 +16,15 @@ export class PlayerController {
         @inject('IPlayerService') private playerService: IPlayerService,
     ) {
 
-        this.router.post(`${this.path}`, [
-            check('FirstName').exists(),
-            check('LastName').exists(),
-            check('Username').exists(),
-            check('Email').isEmail(),
-            check('Password').exists(),
-            check('ConfirmPassword', 'ConfirmPassword field must have the same value as the Password field')
+        this.router.post(`${this.path}register`, [
+            check('firstName').exists(),
+            check('lastName').exists(),
+            check('username').exists(),
+            check('email').isEmail(),
+            check('password').exists(),
+            check('confirmPassword', 'ConfirmPassword field must have the same value as the Password field')
                 .exists()
-                .custom((value, { req }) => value === req.body.Password),
+                .custom((value, { req }) => value === req.body.password),
         ], this.RegisterPlayer.bind(this));
 
         this.router.post(`${this.path}login`, [
@@ -77,11 +77,11 @@ export class PlayerController {
         }
 
         const identity = await this.playerService.RegisterPlayer({
-            FirstName: request.body.FirstName,
-            LastName: request.body.LastName,
-            Username: request.body.Username,
-            Email: request.body.Email,
-            Password: request.body.Password,
+            FirstName: request.body.firstName,
+            LastName: request.body.lastName,
+            Username: request.body.username,
+            Email: request.body.email,
+            Password: request.body.password,
         });
 
         if (identity === -1) {

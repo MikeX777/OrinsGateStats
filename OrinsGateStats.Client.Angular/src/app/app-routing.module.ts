@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PlayerDashboardComponent } from './player-dashboard/player-dashboard.component';
+import { RegisterComponent } from './register/register.component';
+import { TabbedCardComponent } from './tabbed-card/tabbed-card.component';
 
 
 const routes: Routes = [
@@ -11,7 +14,11 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: TabbedCardComponent
+  },
+  {
+    path: 'dashboard',
+    component: PlayerDashboardComponent
   }
 ];
 

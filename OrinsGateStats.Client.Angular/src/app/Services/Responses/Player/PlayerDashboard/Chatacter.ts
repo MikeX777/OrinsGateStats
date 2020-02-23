@@ -1,4 +1,5 @@
-export class PlayerDashboardCharacterDto {
+export class Character {
+
     public ID: number;
     public Name: string;
     public Conscious: boolean;
@@ -6,8 +7,8 @@ export class PlayerDashboardCharacterDto {
     public Stable: boolean;
     public MaxHealth: number;
     public CurrentHealth: number;
-    public Strength: number;
-    public Dexterity: number;
+    public Strenth: number;
+    public Dxterity: number;
     public Constitution: number;
     public Intelligence: number;
     public Wisdom: number;
@@ -23,5 +24,4 @@ export class PlayerDashboardCharacterDto {
     public Exhaustion: number;
     public RaceName: string;
     public CharacterClassName: string;
-    public CampaignName: string;
 }

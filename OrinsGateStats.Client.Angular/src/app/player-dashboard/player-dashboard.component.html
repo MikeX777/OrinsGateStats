@@ -1,0 +1,43 @@
+<h2>Hello {{firstName}} {{lastName}}</h2>
+
+<h3>Characters</h3>
+
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <mat-card *ngFor="let character of characters" class="character-card">
+
+    <mat-card-header>
+      <mat-card-title>{{character.Name}}</mat-card-title>
+      <mat-card-subtitle>{{character.RaceName}} - {{character.CharacterClassName}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <ul>
+        <li>
+          Max Health: {{character.MaxHealth}}
+        </li>
+        <li>
+          Current Health: {{character.CurrentHealth}}
+        </li>
+        <li>
+          Strength: {{character.Strength}}
+        </li>
+        <li>
+          Dexterity: {{character.Dexterity}}
+        </li>
+        <li>
+          Constitution: {{character.Constitution}}
+        </li>
+        <li>
+          Intelligence: {{character.Intelligence}}
+        </li>
+        <li>
+          Wisdom: {{character.Wisdom}}
+        </li>
+        <li>
+          Charisma: {{character.Charisma}}
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+
+</div>

@@ -12,16 +12,27 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { httpInterceptorProviders } from './http-interceptors';
+import { PlayerDashboardComponent } from './player-dashboard/player-dashboard.component';
+import { CreateCharacterComponent } from './create-character/create-character.component';
+import { RegisterComponent } from './register/register.component';
+import { TabbedCardComponent } from './tabbed-card/tabbed-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PlayerDashboardComponent,
+    CreateCharacterComponent,
+    RegisterComponent,
+    TabbedCardComponent
   ],
   imports: [
     MatToolbarModule,
@@ -30,6 +41,9 @@ import { httpInterceptorProviders } from './http-interceptors';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatTabsModule,
     FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
