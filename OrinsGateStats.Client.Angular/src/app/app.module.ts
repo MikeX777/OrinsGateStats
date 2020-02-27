@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -44,6 +45,7 @@ import { TabbedCardComponent } from './tabbed-card/tabbed-card.component';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatTabsModule,
+    MatStepperModule,
     FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,

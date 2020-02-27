@@ -3,19 +3,21 @@ import {
     HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GlobalService } from '../Services/global/global.service';
+import { JwtService } from '../Services/jwt/jwt.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-    constructor(private globalService: GlobalService) {
+    constructor(
+        private jwtServive: JwtService
+        ) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if (this.globalService.token !== null) {
+        if (this.jwtServive.getJwt() !== null) {
             const authRequest = request.clone({
-                headers: request.headers.set('Authorization', `Bearer ${this.globalService.token}`)
+                headers: request.headers.set('Authorization', `Bearer ${this.jwtServive.getJwt()}`)
             });
 
             return next.handle(authRequest);
