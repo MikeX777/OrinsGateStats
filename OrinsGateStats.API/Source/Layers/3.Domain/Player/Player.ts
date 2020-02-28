@@ -5,7 +5,7 @@ import { IResult } from '../../../Infrastructure/Interfaces/IResult';
 import { CreateCharacterRequest } from '../../1.Controllers/Requests/Player/CreateCharacterRequest';
 import { PlayerDashboardDto } from '../../2.Services/DtoModels/Player/PlayerDashboardDto';
 import { PlayerDashboardCharacterDto } from '../../2.Services/DtoModels/Player/SubObjects/PlayerDashboardCharacterDto';
-import { CreateCharacterCommand } from '../../4.Data/ComandLayer/1.Commands/Character/CreateCharacterCommand';
+import { CreateCharacterCommand } from '../../4.Data/CommandLayer/1.Commands/Character/CreateCharacterCommand';
 import { GetPlayerDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Player/GetPlayerDomainQuery';
 import { GetPlayerDomainResult } from '../../4.Data/QueryLayer/3.Results/Player/GetPlayerDomainResult';
 import { TBCharacter } from '../../5.Entities/TBCharacter';

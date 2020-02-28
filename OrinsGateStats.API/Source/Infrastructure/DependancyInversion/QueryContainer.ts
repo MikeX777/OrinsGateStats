@@ -4,7 +4,7 @@ import { IResult } from '../../Infrastructure/Interfaces/IResult';
 import { QueryHandlerBase } from '../../Infrastructure/BaseClasses/QueryHandlerBase';
 
 export class QueryContainer {
-    
+
     private containerDictionary: Dictionary<string, QueryHandlerBase<IQuery, IResult>> =
         new Dictionary<string, QueryHandlerBase<IQuery, IResult>>();
 
@@ -14,7 +14,7 @@ export class QueryContainer {
 
     public async ExecuteQuery<TQuery extends IQuery, TResult extends IResult>(query: TQuery): Promise<TResult | undefined> {
         if (this.containerDictionary.ContainsKey(query.Key)) {
-            let handler = this.containerDictionary.Item(query.Key);
+            const handler = this.containerDictionary.Item(query.Key);
             return await handler.Execute(query) as Promise<TResult>;
         }
     }

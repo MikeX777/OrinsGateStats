@@ -8,7 +8,7 @@ import { CreateCharacterRequest } from '../1.Controllers/Requests/Player/CreateC
 import { LoginRequest } from '../1.Controllers/Requests/Player/LoginRequest';
 import { RegisterPlayerRequest } from '../1.Controllers/Requests/Player/RegisterPlayerRequest';
 import { Player } from '../3.Domain/Player/Player';
-import { RegisterPlayerCommand } from '../4.Data/ComandLayer/1.Commands/Player/RegisterPlayerCommand';
+import { RegisterPlayerCommand } from '../4.Data/CommandLayer/1.Commands/Player/RegisterPlayerCommand';
 import { FindPlayerByEmailOrUsernameQuery } from '../4.Data/QueryLayer/1.Queries/Player/FindPlayerByEmailOrUsernameQuery';
 import { FindPlayerByEmailOrUsernameResult } from '../4.Data/QueryLayer/3.Results/Player/FindPlayerByEmailOrUsernameResult';
 import { PlayerDashboardDto } from './DtoModels/Player/PlayerDashboardDto';
