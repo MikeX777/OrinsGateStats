@@ -2,11 +2,11 @@ import { inject, injectable } from 'tsyringe';
 import { CommandContainer } from '../../Infrastructure/DependancyInversion/CommandContainer';
 import { QueryContainer } from '../../Infrastructure/DependancyInversion/QueryContainer';
 import { Character } from '../3.Domain/Character/Character';
-import { CharacterDashboradDto } from './DtoModels/Character/CharacterDashboardDto';
-import { ICharacterService } from './Interfaces/Index';
-import { RaceDto } from './DtoModels/Race/RaceDto/RaceDto';
 import { GetAllRacesQuery } from '../4.Data/QueryLayer/1.Queries/Race/GetAllRacesQuery';
 import { GetRaceResult } from '../4.Data/QueryLayer/3.Results/Race/GetRaceResult/GetRaceResult';
+import { CharacterDashboradDto } from './DtoModels/Character/CharacterDashboardDto';
+import { RaceDto } from './DtoModels/Race/RaceDto/RaceDto';
+import { ICharacterService } from './Interfaces/Index';
 
 @injectable()
 export class CharacterService implements ICharacterService {
@@ -26,7 +26,7 @@ export class CharacterService implements ICharacterService {
     public async GetAllRaces(): Promise<RaceDto[]> {
         const races = this.queryContainer
             .ExecuteQuery<GetAllRacesQuery, GetRaceResult[]>(
-                new GetAllRacesQuery()
+                new GetAllRacesQuery(),
             );
 
         return races;

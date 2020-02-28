@@ -17,6 +17,9 @@ export class CharacterController  {
             CheckJwt,
             sanitizeParam('characterID').toInt(),
         ], this.getCharacterDashboard.bind(this));
+
+        this.router.get(`${this.path}allRaces`,
+            this.getRaces.bind(this));
     }
 
     public async getCharacterDashboard(request: Request, response: Response) {
@@ -31,6 +34,7 @@ export class CharacterController  {
     }
 
     public async getRaces(request: Request, response: Response) {
-        response.status(200).send();
+        const races = await this.characterService.GetAllRaces();
+        response.status(200).send(races);
     }
 }
