@@ -24,6 +24,7 @@ import { PlayerDashboardComponent } from './player-dashboard/player-dashboard.co
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { RegisterComponent } from './register/register.component';
 import { TabbedCardComponent } from './tabbed-card/tabbed-card.component';
+import { CharacterDashboardComponent } from './character-dashboard/character-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TabbedCardComponent } from './tabbed-card/tabbed-card.component';
     PlayerDashboardComponent,
     CreateCharacterComponent,
     RegisterComponent,
-    TabbedCardComponent
+    TabbedCardComponent,
+    CharacterDashboardComponent
   ],
   imports: [
     MatToolbarModule,
