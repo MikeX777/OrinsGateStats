@@ -1,8 +1,8 @@
-import { injectable, inject } from 'tsyringe';
-import { Router, Request, Response } from 'express';
-import { ICampaignService } from '../2.Services/Interfaces/Index';
-import { CheckJwt } from '../../Infrastructure/Authorization/CheckJwt';
+import { Request, Response, Router } from 'express';
 import { sanitizeParam } from 'express-validator';
+import { inject, injectable } from 'tsyringe';
+import { CheckJwt } from '../../Infrastructure/Authorization/CheckJwt';
+import { ICampaignService } from '../2.Services/Interfaces/Index';
 
 @injectable()
 export class CampaignController {

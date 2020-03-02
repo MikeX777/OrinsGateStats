@@ -257,7 +257,7 @@ export class Character extends ModelBase<number> {
                     return {
                         ID: b.ID,
                         StatType: StatType[b.StatType.Type],
-                        Modifier: b.Bonus.Modifier,
+                        Modifier: b.Bonus,
                     };
                 }),
             };

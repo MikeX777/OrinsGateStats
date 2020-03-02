@@ -85,7 +85,7 @@ export class PlayerController {
         });
 
         if (identity === -1) {
-            return response.status(401).send('Player already exists with either that email or username.');
+            return response.status(400).send('Player already exists with either that email or username.');
         }
 
         return response.status(200).send({ ID: identity });

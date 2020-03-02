@@ -1,7 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 import { CommandContainer } from '../../Infrastructure/DependancyInversion/CommandContainer';
 import { QueryContainer } from '../../Infrastructure/DependancyInversion/QueryContainer';
+import { AddRaceRequest } from '../1.Controllers/Requests/Race/AddRaceRequest/AddRaceRequest';
 import { Character } from '../3.Domain/Character/Character';
+import { AddRaceCommand } from '../4.Data/CommandLayer/1.Commands/Race/AddRaceCommand/AddRaceCommand';
 import { GetAllRacesQuery } from '../4.Data/QueryLayer/1.Queries/Race/GetAllRacesQuery';
 import { GetRaceResult } from '../4.Data/QueryLayer/3.Results/Race/GetRaceResult/GetRaceResult';
 import { CharacterDashboradDto } from './DtoModels/Character/CharacterDashboardDto';
@@ -24,11 +26,16 @@ export class CharacterService implements ICharacterService {
     }
 
     public async GetAllRaces(): Promise<RaceDto[]> {
-        const races = this.queryContainer
+        const races = await this.queryContainer
             .ExecuteQuery<GetAllRacesQuery, GetRaceResult[]>(
                 new GetAllRacesQuery(),
             );
 
         return races;
+    }
+
+    public async CreateRace(race: AddRaceRequest): Promise<any> {
+        const addRaceCommand = new AddRaceCommand(race.Name, race.RaceBonuses);
+        return await this.commandContainer.ExecuteCommand(addRaceCommand);
     }
 }

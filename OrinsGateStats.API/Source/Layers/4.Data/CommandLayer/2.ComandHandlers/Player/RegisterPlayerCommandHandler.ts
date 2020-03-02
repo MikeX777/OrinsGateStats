@@ -1,29 +1,29 @@
-import { CommandHandlerBase } from '../../../../../Infrastructure/BaseClasses/CommandHandlerBase';
-import { RegisterPlayerCommand } from '../../1.Commands/Player/RegisterPlayerCommand';
 import { getRepository } from 'typeorm';
+import { CommandHandlerBase } from '../../../../../Infrastructure/BaseClasses/CommandHandlerBase';
 import { TBPlayer } from '../../../../5.Entities/TBPlayer';
+import { RegisterPlayerCommand } from '../../1.Commands/Player/RegisterPlayerCommand';
 
 export class RegisterPlayerCommandHandler implements CommandHandlerBase<RegisterPlayerCommand> {
     public async Execute(command: RegisterPlayerCommand): Promise<number> {
-        let playerRepository = getRepository(TBPlayer);
+        const playerRepository = getRepository(TBPlayer);
 
         const playerExists = await playerRepository.findOne({
             where: [
                 {
-                    Username: command.Username
+                    Username: command.Username,
                 }, {
-                    Username: command.Email
+                    Username: command.Email,
                 }, {
-                    Email: command.Email
-                }
-            ]
+                    Email: command.Email,
+                },
+            ],
         });
 
         if (playerExists !== undefined) {
             return -1;
         }
 
-        let newPlayer = new TBPlayer();
+        const newPlayer = new TBPlayer();
         newPlayer.FirstName = command.FirstName;
         newPlayer.LastName = command.LastName;
         newPlayer.Username =  command.Username;

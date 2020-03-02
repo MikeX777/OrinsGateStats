@@ -4,7 +4,7 @@ import JwtSecret from './JwtSecret';
 
 export const CheckJwt = (request: Request, response: Response, next: NextFunction) => {
     let token = request.headers.authorization;
-    if (token.startsWith('Bearer ')) {
+    if (token && token.startsWith('Bearer ')) {
         token = token.slice(7, token.length);
     }
     let jwtPayload;

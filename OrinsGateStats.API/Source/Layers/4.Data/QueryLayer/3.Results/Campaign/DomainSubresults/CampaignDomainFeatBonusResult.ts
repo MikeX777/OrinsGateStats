@@ -7,6 +7,6 @@ export class CampaignDomainFeatBonusResult {
     public FeatID: number;
     public BonusID: number;
     public StatTypeID: number;
-    public Bonus: CampaignDomainBonusResult;
+    public Bonus: number;
     public StatType: CampaignDomainStatTypeResult;
 }

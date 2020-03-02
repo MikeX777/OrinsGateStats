@@ -1,12 +1,10 @@
-import { CharacterDomainBonusResult } from "./CharacterDomainBonusResult";
-import { CharacterDomainStatTypeResult } from "./CharacterDomainStatTypeResult";
+import { CharacterDomainStatTypeResult } from './CharacterDomainStatTypeResult';
 
 export class CharacterDomainFeatBonusResult {
 
-    ID: number;
-    FeatID: number;
-    BonusID: number;
-    StatTypeID: number;
-    Bonus: CharacterDomainBonusResult;
-    StatType: CharacterDomainStatTypeResult;
+    public ID: number;
+    public FeatID: number;
+    public StatTypeID: number;
+    public Bonus: number;
+    public StatType: CharacterDomainStatTypeResult;
 }

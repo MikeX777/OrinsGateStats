@@ -1,9 +1,9 @@
-import { QueryHandlerBase } from '../../../../../Infrastructure/BaseClasses/QueryHandlerBase';
-import { GetRaceQuery } from '../../1.Queries/Race/GetRaceQuery';
-import { GetRaceResult } from '../../3.Results/Race/GetRaceResult/GetRaceResult';
 import { createQueryBuilder } from 'typeorm';
+import { QueryHandlerBase } from '../../../../../Infrastructure/BaseClasses/QueryHandlerBase';
 import { TBRace } from '../../../../5.Entities/TBRace';
+import { GetRaceQuery } from '../../1.Queries/Race/GetRaceQuery';
 import { GetRaceBonusResult } from '../../3.Results/Race/GetRaceResult/GetRaceBonusResult';
+import { GetRaceResult } from '../../3.Results/Race/GetRaceResult/GetRaceResult';
 
 export class GetRaceQueryHandler extends QueryHandlerBase<GetRaceQuery, GetRaceResult> {
 
@@ -19,11 +19,11 @@ export class GetRaceQueryHandler extends QueryHandlerBase<GetRaceQuery, GetRaceR
             Name: raceTableData.Name,
             RaceBonuses: raceTableData.RaceBonuses.map((rb) => {
                 const bonus: GetRaceBonusResult = {
-                    Bonus: rb.Bonus.Modifier,
-                    StatType: rb.StatType.Type
+                    Bonus: rb.Bonus,
+                    StatType: rb.StatType.Type,
                 };
                 return bonus;
-            })
+            }),
         };
         return result;
     }

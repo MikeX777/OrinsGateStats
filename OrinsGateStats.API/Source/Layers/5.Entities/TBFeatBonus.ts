@@ -17,13 +17,8 @@ export class TBFeatBonus {
     @RelationId((FeatBonus: TBFeatBonus) => FeatBonus.Feat)
     public FeatID: number;
 
-    @ManyToOne(() => TBBonus, (bonus) => bonus.FeatBonuses)
-    @JoinColumn({ name: 'BonusID' })
-    public Bonus: TBBonus;
-
     @Column()
-    @RelationId((FeatBonus: TBFeatBonus) => FeatBonus.Bonus)
-    public BonusID: number;
+    public Bonus: number;
 
     @ManyToOne(() => TBStatType, (statType) => statType.FeatBonuses)
     @JoinColumn({ name: 'StatTypeID' })

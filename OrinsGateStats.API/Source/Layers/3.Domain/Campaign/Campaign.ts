@@ -2,6 +2,8 @@ import { ModelBase } from '../../../Infrastructure/BaseClasses/ModelBase';
 import { CommandContainer } from '../../../Infrastructure/DependancyInversion/CommandContainer';
 import { QueryContainer } from '../../../Infrastructure/DependancyInversion/QueryContainer';
 import { IResult } from '../../../Infrastructure/Interfaces/IResult';
+import { CampaignDashboardDto } from '../../2.Services/DtoModels/Campaign/CampaignDashboardDto/CampaignDashboardDto';
+import { CharacterDto } from '../../2.Services/DtoModels/Campaign/CampaignDashboardDto/CharacterDto';
 import { GetCampaignDomainQuery } from '../../4.Data/QueryLayer/1.Queries/Campaign/GetCampaignDomainQuery';
 import { GetCampaignDomainResult } from '../../4.Data/QueryLayer/3.Results/Campaign/GetCampaignDomainResult';
 import { StatType } from './SubObjects/StatType';
@@ -13,8 +15,6 @@ import { Sub_Player } from './SubObjects/Sub_Player';
 import { Sub_Power } from './SubObjects/Sub_Power';
 import { Sub_Request } from './SubObjects/Sub_Request';
 import { Sub_Trick } from './SubObjects/Sub_Trick';
-import { CampaignDashboardDto } from '../../2.Services/DtoModels/Campaign/CampaignDashboardDto/CampaignDashboardDto';
-import { CharacterDto } from '../../2.Services/DtoModels/Campaign/CampaignDashboardDto/CharacterDto';
 
 export class Campaign extends ModelBase<number> {
 
@@ -75,11 +75,11 @@ export class Campaign extends ModelBase<number> {
                     Tricks: character.Tricks.map((trick) => trick.Name),
                     TrickIDs: character.Tricks.map((trick) => trick.ID),
                     Powers: character.Powers.map((power) => power.Name),
-                    PowerIDs: character.Powers.map((power) => power.ID)
+                    PowerIDs: character.Powers.map((power) => power.ID),
                 };
 
                 return characterDto;
-            })
+            }),
         };
 
         return dashboard;
@@ -167,9 +167,9 @@ export class Campaign extends ModelBase<number> {
                         Text: characterFeats.Feat.Text,
                         Bonuses: characterFeats.Feat.FeatBonuses.map((featBonus) => {
                             const bonus: Sub_Bonus = {
-                                ID: featBonus.Bonus.ID,
+                                ID: featBonus.ID,
                                 StatType: StatType[featBonus.StatType.Type],
-                                Modifier: featBonus.Bonus.Modifier,
+                                Modifier: featBonus.Bonus,
                             };
                             return bonus;
                         }),

@@ -18,7 +18,6 @@ export class GetCharacterDomainQueryHandler extends
             .leftJoinAndSelect('TBCharacter.CharacterFeats', 'CharacterFeats')
                 .leftJoinAndSelect('CharacterFeats.Feat', 'Feat')
                     .leftJoinAndSelect('Feat.FeatBonuses', 'FeatBonuses')
-                        .leftJoinAndSelect('FeatBonuses.Bonus', 'Bonus')
                         .leftJoinAndSelect('FeatBonuses.StatType', 'StatType')
             .leftJoinAndSelect('TBCharacter.CharacterLanguages', 'CharacterLanguages')
                 .leftJoinAndSelect('CharacterLanguages.Language', 'Language')
