@@ -28,6 +28,9 @@ export class CharacterController  {
             check('raceBonuses').exists().isArray(),
             sanitizeBody('*'),
         ], this.addRace.bind(this));
+
+        this.router.get(`${this.path}allStatTypes`,
+            this.getStatTypes.bind(this));
     }
 
     public async getCharacterDashboard(request: Request, response: Response) {
@@ -69,5 +72,10 @@ export class CharacterController  {
         }
 
         return response.status(200).send(race);
+    }
+
+    public async getStatTypes(request: Request, response: Response) {
+        const statTypes = await this.characterService.GetAllStatTypes();
+        response.status(200).send(statTypes);
     }
 }

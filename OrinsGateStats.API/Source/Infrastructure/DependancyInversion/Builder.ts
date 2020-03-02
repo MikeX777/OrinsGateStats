@@ -1,6 +1,7 @@
 import { CreateCharacterCommandHandler } from '../../Layers/4.Data/CommandLayer/2.ComandHandlers/Character/CreateCharacterCommandHandler';
 import { RegisterPlayerCommandHandler } from '../../Layers/4.Data/CommandLayer/2.ComandHandlers/Player/RegisterPlayerCommandHandler';
 import { AddRaceCommandHandler } from '../../Layers/4.Data/CommandLayer/2.ComandHandlers/Race/AddRaceCommandHandler';
+import { GetAllStatTypesQueryHandler } from '../../Layers/4.Data/QueryLayer/2.QueryHandlers/Character/GetAllStatTypesQueryHandler';
 import { GetCharacterDomainQueryHandler } from '../../Layers/4.Data/QueryLayer/2.QueryHandlers/Character/GetCharacterDomainQueryHandler';
 import { GetCharacterQueryHandler } from '../../Layers/4.Data/QueryLayer/2.QueryHandlers/Character/GetCharacterQueryHandler';
 import { FindPlayerByEmailOrUsernameQueryHandler } from '../../Layers/4.Data/QueryLayer/2.QueryHandlers/Player/FindPlayerByEmailOrUsernameQueryHandler';
@@ -19,6 +20,7 @@ export function BuildQueryContainer(): QueryContainer {
     queryContainer.Register('FindPlayerbyEmailOrUsernameQuery', new FindPlayerByEmailOrUsernameQueryHandler());
     queryContainer.Register('GetPlayerDomainQuery', new GetPlayerDomainQueryHandler());
     queryContainer.Register('GetAllRacesQuery', new GetAllRacesQueryHandler());
+    queryContainer.Register('GetAllStatTypesQuery', new GetAllStatTypesQueryHandler());
 
     return queryContainer;
 }
