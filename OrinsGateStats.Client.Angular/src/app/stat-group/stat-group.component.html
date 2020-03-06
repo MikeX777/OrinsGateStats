@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-content>
+    {{dashboard.Strength}}
+    <div *ngIf="dashboard.StrengthModifier >= 0; else elseBlockStrength">+{{dashboard.StrengthModifier}}</div>
+    <ng-template #elseBlockStrength>
+        <br />
+        {{dashboard.StrengthModifier}}
+        <br />
+    </ng-template>
+    Strength
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    {{dashboard.Dexterity}}
+    <div *ngIf="dashboard.DexterityModifier >= 0; else elseBlockDexterity">+{{dashboard.DexterityModifier}}</div>
+    <ng-template #elseBlockDexterity>
+        <br />
+        {{dashboard.DexterityModifier}}
+        <br />
+    </ng-template>
+    Dexterity
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    {{dashboard.Constitution}}
+    <div *ngIf="dashboard.ConstitutionModifier >= 0; else elseBlockConstitution">+{{dashboard.ConstitutionModifier}}
+    </div>
+    <ng-template #elseBlockConstitution>
+        <br />
+        {{dashboard.ConstitutionModifier}}
+        <br />
+    </ng-template>
+    Constitution
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    {{dashboard.Intelligence}}
+    <div *ngIf="dashboard.IntelligenceModifier >= 0; else elseBlockIntelligence">+{{dashboard.IntelligenceModifier}}
+    </div>
+    <ng-template #elseBlockIntelligence>
+      <br />
+      {{dashboard.IntelligenceModifier}}
+      <br />
+    </ng-template>
+    Intelligence
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    {{dashboard.Wisdom}}
+    <div *ngIf="dashboard.WisdomModifier >= 0; else elseBlockWisdom">+{{dashboard.WisdomModifier}}</div>
+    <ng-template #elseBlockWisdom>
+        <br />
+        {{dashboard.WisdomModifier}}
+        <br />
+    </ng-template>
+    Wisdom
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    {{dashboard.Charisma}}
+    <div *ngIf="dashboard.CharismaModifier >= 0; else elseBlockCharisma">+{{dashboard.CharismaModifier}}</div>
+    <ng-template #elseBlockCharisma>
+        <br />
+        {{dashboard.CharismaModifier}}
+        <br />
+    </ng-template>
+    Charisma
+  </mat-card-content>
+</mat-card>

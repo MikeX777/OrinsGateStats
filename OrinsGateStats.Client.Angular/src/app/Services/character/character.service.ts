@@ -16,6 +16,6 @@ export class CharacterService {
   ) { }
 
   public getDashboard(characterID: string): Observable<CharacterDashboard> {
-    return this.http.get<CharacterDashboard>(`${this.path}${characterID}`);
+    return this.http.get<CharacterDashboard>(`${this.path}dashboard/${characterID}`);
   }
 }

@@ -5,20 +5,20 @@
    "username": "mcuom",
    "password": "MikeX777",
    "database": "orinsGateStats",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "entities": [
       "dist/Layers/5.Entities/**/*.js"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "Source/Infrastructure/Migrations/**/*.ts"
    ],
    "subscribers": [
       "src/subscriber/**/*.ts"
    ],
    "cli": {
       "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
+      "migrationsDir": "Source/Infrastructure/Migrations",
       "subscribersDir": "src/subscriber"
    }
 }

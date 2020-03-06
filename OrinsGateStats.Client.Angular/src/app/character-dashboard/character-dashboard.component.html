@@ -1,4 +1,23 @@
 <div *ngIf="dashboard$ | async as dashboard">
-    <h2>{{dashboard.CharacterName}}</h2>
-    
+
+    <mat-grid-list cols="6" rowHeight="150px">
+        <mat-grid-tile
+            colspan="2"
+            rowspan="1"
+        >
+            <h2>{{dashboard.CharacterName}}</h2>
+        </mat-grid-tile>
+        <mat-grid-tile
+            colspan="4"
+            rowspan="1"
+        >
+            {{dashboard.CharacterClassName}}-{{dashboard.Level}}
+        </mat-grid-tile>
+        <mat-grid-tile
+            colspan="1"
+            rowspan="6"
+        >
+            <app-stat-group [dashboard]="dashboard"></app-stat-group>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
