@@ -1,5 +1,5 @@
 export class CharacterDomainBonusResult {
 
-    ID: number;
-    Modifier: number;
+    public ID: number;
+    public Modifier: number;
 }

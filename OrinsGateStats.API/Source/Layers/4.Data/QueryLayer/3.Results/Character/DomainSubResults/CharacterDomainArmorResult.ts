@@ -1,6 +1,6 @@
 export class CharacterDomainArmorResult {
 
-    ID: number;
-    Name: string;
-    Bonus: number;
+    public ID: number;
+    public Name: string;
+    public Bonus: number;
 }

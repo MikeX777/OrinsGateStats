@@ -1,6 +1,6 @@
 export class CharacterDomainClassHitDieResult {
 
-    ID: number;
-    Name: string;
-    Value: number;
+    public ID: number;
+    public Name: string;
+    public Value: number;
 }

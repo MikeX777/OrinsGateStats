@@ -1,9 +1,9 @@
-import { CharacterDomainTrickResult } from "./CharacterDomainTrickResult";
+import { CharacterDomainTrickResult } from './CharacterDomainTrickResult';
 
 export class CharacterDomainCharacterTrickResult {
 
-    ID: number;
-    CharacterID: number;
-    TrickID: number;
-    Trick: CharacterDomainTrickResult;
+    public ID: number;
+    public CharacterID: number;
+    public TrickID: number;
+    public Trick: CharacterDomainTrickResult;
 }

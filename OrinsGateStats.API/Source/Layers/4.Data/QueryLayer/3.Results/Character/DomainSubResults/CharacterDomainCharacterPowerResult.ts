@@ -1,9 +1,9 @@
-import { CharacterDomainPowerResult } from "./CharacterDomainPowerResult";
+import { CharacterDomainPowerResult } from './CharacterDomainPowerResult';
 
 export class CharacterDomainCharacterPowerResult {
 
-    ID: number;
-    CharacterID: number;
-    PowerID: number;
-    Power: CharacterDomainPowerResult;
+    public ID: number;
+    public CharacterID: number;
+    public PowerID: number;
+    public Power: CharacterDomainPowerResult;
 }

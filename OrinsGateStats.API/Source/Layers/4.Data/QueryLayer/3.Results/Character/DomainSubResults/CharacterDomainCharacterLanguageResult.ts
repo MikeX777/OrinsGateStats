@@ -1,9 +1,9 @@
-import { CharacterDomainLanguageResult } from "./CharacterDomainLanguageResult";
+import { CharacterDomainLanguageResult } from './CharacterDomainLanguageResult';
 
 export class CharacterDomainCharacterLanguageResult {
 
-    ID: number;
-    CharacterID: number;
-    LanguageID: number;
-    Language: CharacterDomainLanguageResult;
+    public ID: number;
+    public CharacterID: number;
+    public LanguageID: number;
+    public Language: CharacterDomainLanguageResult;
 }

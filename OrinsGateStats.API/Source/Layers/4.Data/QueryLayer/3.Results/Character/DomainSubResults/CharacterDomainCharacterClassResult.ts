@@ -1,8 +1,8 @@
-import { CharacterDomainClassHitDieResult } from "./CharacterdomainClassHitDieResult";
+import { CharacterDomainClassHitDieResult } from './CharacterdomainClassHitDieResult';
 
 export class CharacterDomainCharacterClassResult {
 
-    ID: number;
-    Name: string;
-    HitDie: CharacterDomainClassHitDieResult;
+    public ID: number;
+    public Name: string;
+    public HitDie: CharacterDomainClassHitDieResult;
 }

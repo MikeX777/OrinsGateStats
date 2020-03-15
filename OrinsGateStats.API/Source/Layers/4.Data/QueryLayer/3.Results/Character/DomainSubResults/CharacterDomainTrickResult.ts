@@ -1,5 +1,5 @@
 export class CharacterDomainTrickResult {
 
-    ID: number;
-    Name: string;
+    public ID: number;
+    public Name: string;
 }

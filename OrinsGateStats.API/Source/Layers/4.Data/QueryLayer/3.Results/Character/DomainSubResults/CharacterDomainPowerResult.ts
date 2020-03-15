@@ -1,6 +1,6 @@
 export class CharacterDomainPowerResult {
 
-    ID: number;
-    Name: string;
-    Level: number;
+    public ID: number;
+    public Name: string;
+    public Level: number;
 }

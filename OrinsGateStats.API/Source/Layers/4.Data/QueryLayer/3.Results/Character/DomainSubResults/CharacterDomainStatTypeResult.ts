@@ -1,5 +1,5 @@
 export class CharacterDomainStatTypeResult {
 
-    ID: number;
-    Type: string;
+    public ID: number;
+    public Type: string;
 }

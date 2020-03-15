@@ -1,9 +1,9 @@
 export class CharacterDomainPlayerResult {
 
-    ID: number;
-    Username: string;
-    Password: string;
-    Email: string;
-    FirstName: string;
-    LastName: string;
+    public ID: number;
+    public Username: string;
+    public Password: string;
+    public Email: string;
+    public FirstName: string;
+    public LastName: string;
 }

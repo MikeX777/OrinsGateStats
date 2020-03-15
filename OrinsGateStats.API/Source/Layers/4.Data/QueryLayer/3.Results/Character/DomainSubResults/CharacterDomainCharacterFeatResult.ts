@@ -1,9 +1,9 @@
-import { CharacterDomainFeatResult } from "./CharacterDomainFeatResult";
+import { CharacterDomainFeatResult } from './CharacterDomainFeatResult';
 
 export class CharacterDomainCharacterFeatResult {
 
-    ID: number;
-    CharacterID: number;
-    FeatID: number;
-    Feat: CharacterDomainFeatResult;
+    public ID: number;
+    public CharacterID: number;
+    public FeatID: number;
+    public Feat: CharacterDomainFeatResult;
 }
