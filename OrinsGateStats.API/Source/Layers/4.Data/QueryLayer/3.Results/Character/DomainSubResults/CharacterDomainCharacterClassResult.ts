@@ -1,4 +1,4 @@
-import { CharacterDomainClassHitDieResult } from './CharacterdomainClassHitDieResult';
+import { CharacterDomainClassHitDieResult } from './CharacterDomainClassHitDieResult';
 
 export class CharacterDomainCharacterClassResult {
 

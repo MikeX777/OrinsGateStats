@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node ./dist/Server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -b && mv ./dist/Environment/environment.prod.js ./dist/Environment/environment.js"
+    "build": "tsc -b"
   },
   "keywords": [],
   "author": "",
