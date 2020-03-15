@@ -1,0 +1,20 @@
+{
+   "type": "postgres",
+   "url": "host=orins-gate-stats-db.postgres.database.azure.com port=5432 dbname=orinsGateStats user=orinsGateStats@orins-gate-stats-db password=Pfgc)-{YD8SJ<F.G sslmode=require",
+   "synchronize": false,
+   "migrationsRun": true,
+   "entities": [
+      "dist/Layers/5.Entities/**/*.js"
+   ],
+   "migrations": [
+      "Source/Infrastructure/Migrations/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "Source/Infrastructure/Migrations",
+      "subscribersDir": "src/subscriber"
+   }
+}

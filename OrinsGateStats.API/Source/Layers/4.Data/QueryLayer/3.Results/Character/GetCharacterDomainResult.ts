@@ -1,0 +1,45 @@
+import { IResult } from '../../../../../Infrastructure/Interfaces/IResult';
+import { CharacterDomainArmorResult } from './DomainSubResults/CharacterDomainArmorResult';
+import { CharacterDomainCampaignResult } from './DomainSubResults/CharacterDomainCampaignResult';
+import { CharacterDomainCharacterClassResult } from './DomainSubResults/CharacterDomainCharacterClassResult';
+import { CharacterDomainCharacterFeatResult } from './DomainSubResults/CharacterDomainCharacterFeatResult';
+import { CharacterDomainCharacterLanguageResult } from './DomainSubResults/CharacterDomainCharacterLanguageResult';
+import { CharacterDomainCharacterPowerResult } from './DomainSubResults/CharacterDomainCharacterPowerResult';
+import { CharacterDomainCharacterTrickResult } from './DomainSubResults/CharacterDomainCharacterTrickResult';
+import { CharacterDomainPlayerResult } from './DomainSubResults/CharacterDomainPlayerResult';
+import { CharacterDomainRaceResult } from './DomainSubResults/CharacterDomainRaceResult';
+import { CharacterDomainShieldResult } from './DomainSubResults/CharacterDomainShieldResult';
+
+export class GetCharacterDomainResult implements IResult {
+    public ID: number;
+    public Name: string;
+    public Conscious: boolean;
+    public Alive: boolean;
+    public Stable: boolean;
+    public MaxHealth: number;
+    public CurrentHealth: number;
+    public Strength: number;
+    public Dexterity: number;
+    public Constitution: number;
+    public Intelligence: number;
+    public Wisdom: number;
+    public Charisma: number;
+    public Speed: number;
+    public Copper: number;
+    public Silver: number;
+    public Gold: number;
+    public Platinum: number;
+    public MaxHitDice: number;
+    public CurrentHitDice: number;
+    public Exhaustion: number;
+    public Armor: CharacterDomainArmorResult;
+    public Campaign: CharacterDomainCampaignResult;
+    public CharacterClass: CharacterDomainCharacterClassResult;
+    public Player: CharacterDomainPlayerResult;
+    public Race: CharacterDomainRaceResult;
+    public Shield: CharacterDomainShieldResult;
+    public CharacterFeats: CharacterDomainCharacterFeatResult[];
+    public CharacterLanguages: CharacterDomainCharacterLanguageResult[];
+    public CharacterPowers: CharacterDomainCharacterPowerResult[];
+    public CharacterTricks: CharacterDomainCharacterTrickResult[];
+}

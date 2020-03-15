@@ -1,0 +1,22 @@
+<br />
+
+<mat-form-field>
+  <mat-label>Email or Username</mat-label>
+  <input matInput [(ngModel)]="emailOrUsername">
+</mat-form-field>
+
+<br />
+
+<mat-form-field>
+  <mat-label>Password</mat-label>
+  <input matInput type="password" [(ngModel)]="password">
+</mat-form-field>
+
+<br />
+
+<mat-spinner *ngIf="loading" mode="indeterminate">
+</mat-spinner>
+
+<br />
+
+<button mat-raised-button color="primary" (click)="login()">LOGIN</button>
