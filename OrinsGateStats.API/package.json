@@ -1,7 +1,7 @@
 {
   "name": "orins_gate_stats.api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API for OrinsGateStats",
   "main": "./dist/server.js",
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node ./dist/Server.js\"",
