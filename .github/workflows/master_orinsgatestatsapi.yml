@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy-api:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       working-directory: ./OrinsGateStats.API
 
