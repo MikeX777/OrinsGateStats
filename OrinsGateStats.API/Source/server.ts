@@ -7,7 +7,7 @@ import { BuildQueryContainer } from './Infrastructure/DependancyInversion/Builde
 import DIContainer from './Infrastructure/DependancyInversion/Container';
 import ApplyControllers from './Layers/1.Controllers/Index';
 import Middleware from './Middleware/Index';
-import { ApplyMiddleware, applyRoutes } from './Utilities';
+import { ApplyMiddleware, applyRoutes } from './Utilities/Index';
 
 const connection = createConnection({
     type: 'postgres',
