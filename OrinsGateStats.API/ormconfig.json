@@ -1,12 +1,8 @@
 {
    "type": "postgres",
-   "host": "localhost",
-   "port": 5432,
-   "username": "mcuom",
-   "password": "MikeX777",
-   "database": "orinsGateStats",
+   "url": "host=orins-gate-stats-db.postgres.database.azure.com port=5432 dbname=orinsGateStats user=orinsGateStats@orins-gate-stats-db password=Pfgc)-{YD8SJ<F.G sslmode=require",
    "synchronize": false,
-   "logging": false,
+   "migrationsRun": true,
    "entities": [
       "dist/Layers/5.Entities/**/*.js"
    ],

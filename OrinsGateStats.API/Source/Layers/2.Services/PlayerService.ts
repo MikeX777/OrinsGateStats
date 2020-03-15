@@ -1,7 +1,7 @@
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
-import secret from '../../Infrastructure/Authorization/JwtSecret';
+import { environment } from '../.././Environment/environment';
 import { CommandContainer } from '../../Infrastructure/DependancyInversion/CommandContainer';
 import { QueryContainer } from '../../Infrastructure/DependancyInversion/QueryContainer';
 import { CreateCharacterRequest } from '../1.Controllers/Requests/Player/CreateCharacterRequest';
@@ -42,7 +42,8 @@ export class PlayerService implements IPlayerService {
             );
         if (player !== undefined) {
             if (await compare(loginRequest.Password, player.Password)) {
-                return { Token: sign({ PlayerID: player.ID }, secret, { expiresIn: '4h' }), ID: player.ID};
+                return { Token: sign({ PlayerID: player.ID }, environment.jwtSecret,
+                    { expiresIn: '4h' }), ID: player.ID};
             }
         }
         return undefined;

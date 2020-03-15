@@ -2,6 +2,7 @@
 import http from 'http';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
+import { environment } from './Environment/environment';
 import { BuildQueryContainer } from './Infrastructure/DependancyInversion/Builder';
 import DIContainer from './Infrastructure/DependancyInversion/Container';
 import ApplyControllers from './Layers/1.Controllers';
@@ -9,7 +10,19 @@ import Middleware from './Middleware';
 import ErrorHandlers from './Middleware/ErrorHandlers';
 import { ApplyMiddleware, applyRoutes } from './Utilities';
 
-createConnection().then(async (connection) => {
+const connection = createConnection({
+    type: 'postgres',
+    url: environment.url,
+    entities: [
+        'dist/Layers/5.Entities/**/*.js',
+    ],
+    migrations: [
+        'dist/Infrastructure/Migrations/**/*.js',
+    ],
+    migrationsRun: true,
+    synchronize: false,
+// tslint:disable-next-line: no-shadowed-variable
+}).then(async (connection) => {
     process.on('uncaughtException', (e) => {
         // tslint:disable-next-line: no-console
         console.log(e);

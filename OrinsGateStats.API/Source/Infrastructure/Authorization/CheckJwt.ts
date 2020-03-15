@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { sign, verify } from 'jsonwebtoken';
-import JwtSecret from './JwtSecret';
+import { environment } from '../.././Environment/environment';
 
 export const CheckJwt = (request: Request, response: Response, next: NextFunction) => {
     let token = request.headers.authorization;
@@ -10,7 +10,7 @@ export const CheckJwt = (request: Request, response: Response, next: NextFunctio
     let jwtPayload;
 
     try {
-        jwtPayload = ( verify(token, JwtSecret) as any);
+        jwtPayload = ( verify(token, environment.jwtSecret) as any);
         response.locals.jwtPayload = jwtPayload;
     } catch (error) {
         response.status(401).send();
@@ -18,7 +18,7 @@ export const CheckJwt = (request: Request, response: Response, next: NextFunctio
     }
 
     const { PlayerID } = jwtPayload;
-    const newToken = sign({ PlayerID }, JwtSecret, {
+    const newToken = sign({ PlayerID }, environment.jwtSecret, {
         expiresIn: '4h',
     });
     response.setHeader('token', newToken);

@@ -2,10 +2,11 @@
   "name": "orins_gate_stats.api",
   "version": "1.0.0",
   "description": "",
-  "main": "Source/Server.ts",
+  "main": "./dist/server.js",
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node ./dist/Server.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -b && mv ./dist/Environment/environment.prod.js ./dist/Environment/environment.js"
   },
   "keywords": [],
   "author": "",
@@ -24,11 +25,11 @@
     "express": "^5.0.0-alpha.7",
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^7.12.1",
+    "pg": "^7.18.2",
     "reflect-metadata": "^0.1.13",
     "tsc-watch": "^4.0.0",
     "tsyringe": "^3.4.0",
-    "typeorm": "^0.2.20",
+    "typeorm": "^0.2.24",
     "typescript": "^3.7.0-beta"
   }
 }

@@ -31,6 +31,9 @@ export class CharacterController  {
 
         this.router.get(`${this.path}allStatTypes`,
             this.getStatTypes.bind(this));
+
+        this.router.get(`/api/test/test`,
+            this.testRequest.bind(this));
     }
 
     public async getCharacterDashboard(request: Request, response: Response) {
@@ -77,5 +80,9 @@ export class CharacterController  {
     public async getStatTypes(request: Request, response: Response) {
         const statTypes = await this.characterService.GetAllStatTypes();
         response.status(200).send(statTypes);
+    }
+
+    public async testRequest(request: Request, response: Response) {
+        response.status(200).send({ testValue: 'Hello Test Value: 1' });
     }
 }
