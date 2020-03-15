@@ -12,7 +12,7 @@ jobs:
   build-and-deploy-api:
     runs-on: windows-latest
     env:
-      working_directory: ./OrinsGateStats.API
+      working-directory: ./OrinsGateStats.API
 
     steps:
     - uses: actions/checkout@master
@@ -22,12 +22,21 @@ jobs:
       with:
         node-version: '12.13.0'
         
+    - name: echo pwd
+      run: pwd
+      shell: pwsh
+    
+    - name: echo working directory
+      run: pwd
+      working-directory: ${{ env.working-directory }}
+      shell: pwsh
+        
     - name: Create environment File
       run: |
-        del  envrionment.ts
+        del envrionment.ts
         mv envrionment.prod.ts environment.ts
       shell: pwsh
-      working-directory: ${{ env.working-directory }}/Source/Environment
+      working-directory: ./OrinsGateStats.API/Source/Environment
     
     - name: Find and Replace Database URL
       uses: jacobtomlinson/gha-find-replace@0.1.1
@@ -59,7 +68,7 @@ jobs:
   build-and-deploy-client:
     runs-on: windows-latest
     env:
-      working_directory: ./OrinsGateStats.Client.Angular
+      working-directory: ./OrinsGateStats.Client.Angular
       
     steps:
     - uses: actions/checkout@master
