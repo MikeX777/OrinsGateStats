@@ -69,7 +69,7 @@ jobs:
       with:
         app-name: 'orinsgatestatsapi'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a84690b167e04b9d98da3632bc044a8c }}
+        publish-profile: ${{ secrets.API_PUBLISH_PROFILE }}
         package:  ${{ env.working-directory }}
 
   build-and-deploy-client:
