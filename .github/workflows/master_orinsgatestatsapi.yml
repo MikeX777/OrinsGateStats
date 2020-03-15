@@ -70,7 +70,7 @@ jobs:
         app-name: 'orinsgatestatsapi'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_a84690b167e04b9d98da3632bc044a8c }}
-        package:  ${{ env.working-directory }}/dist
+        package:  ${{ env.working-directory }}
 
   build-and-deploy-client:
     runs-on: windows-latest
