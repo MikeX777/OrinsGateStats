@@ -42,7 +42,7 @@ jobs:
       shell: pwsh
         
     - name: Create environment File
-      run: mv envrionment.prod.ts environment.ts
+      run: mv environment.prod.ts environment.ts
       shell: pwsh
       working-directory: ${{ env.working-directory }}/Source/Environment
     
