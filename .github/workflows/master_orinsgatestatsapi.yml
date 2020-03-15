@@ -30,6 +30,16 @@ jobs:
       run: pwd
       working-directory: ${{ env.working-directory }}
       shell: pwsh
+    
+    - name: echo working directory environment
+      run: pwd
+      working-directory: ${{ env.working-directory }}/Source/Environment
+      shell: pwsh
+    
+    - name: echo files
+      run: ls
+      working-directory: ${{ env.working-directory }}
+      shell: pwsh
         
     - name: Create environment File
       run: mv ./Souce/Envrionment/envrionment.prod.ts ./Souce/Envrionment/environment.ts
