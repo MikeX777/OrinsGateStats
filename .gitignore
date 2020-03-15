@@ -53,3 +53,5 @@ obj
 
 JwtSecret.ts
 .deployment
+
+/OrinsGateStats.API/Source/Environment/environment.ts
