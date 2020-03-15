@@ -32,9 +32,9 @@ jobs:
       shell: pwsh
         
     - name: Create environment File
-      run: mv envrionment.prod.ts environment.ts
+      run: mv ./Souce/Envrionment/envrionment.prod.ts ./Souce/Envrionment/environment.ts
       shell: pwsh
-      working-directory: ./OrinsGateStats.API/Source/Environment
+      working-directory: ${{ env.working-directory }}
     
     - name: Find and Replace Database URL
       uses: jacobtomlinson/gha-find-replace@0.1.1
