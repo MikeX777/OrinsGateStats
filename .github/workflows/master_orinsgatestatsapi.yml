@@ -38,13 +38,13 @@ jobs:
     
     - name: echo files
       run: ls
-      working-directory: ${{ env.working-directory }}
+      working-directory: ${{ env.working-directory }}/Source/Environment
       shell: pwsh
         
     - name: Create environment File
-      run: mv ./Souce/Envrionment/envrionment.prod.ts ./Souce/Envrionment/environment.ts
+      run: mv envrionment.prod.ts environment.ts
       shell: pwsh
-      working-directory: ${{ env.working-directory }}
+      working-directory: ${{ env.working-directory }}/Source/Environment
     
     - name: Find and Replace Database URL
       uses: jacobtomlinson/gha-find-replace@0.1.1
