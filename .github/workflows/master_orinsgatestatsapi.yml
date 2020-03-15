@@ -32,9 +32,7 @@ jobs:
       shell: pwsh
         
     - name: Create environment File
-      run: |
-        del envrionment.ts
-        mv envrionment.prod.ts environment.ts
+      run: mv envrionment.prod.ts environment.ts
       shell: pwsh
       working-directory: ./OrinsGateStats.API/Source/Environment
     
@@ -91,4 +89,4 @@ jobs:
         app-name: 'orinsgatestats'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_7af393f40ef24a1489ae5e87c0720985 }}
-        package: ${{ env.working-directory }}/dist/orins-gate/stats
+        package: ${{ env.working-directory }}/dist/orins-gate-stats
