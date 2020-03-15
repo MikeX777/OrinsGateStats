@@ -5,9 +5,8 @@ import { createConnection } from 'typeorm';
 import { environment } from './Environment/environment';
 import { BuildQueryContainer } from './Infrastructure/DependancyInversion/Builder';
 import DIContainer from './Infrastructure/DependancyInversion/Container';
-import ApplyControllers from './Layers/1.Controllers';
-import Middleware from './Middleware';
-import ErrorHandlers from './Middleware/ErrorHandlers';
+import ApplyControllers from './Layers/1.Controllers/Index';
+import Middleware from './Middleware/Index';
 import { ApplyMiddleware, applyRoutes } from './Utilities';
 
 const connection = createConnection({
