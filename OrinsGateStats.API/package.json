@@ -29,7 +29,7 @@
     "reflect-metadata": "^0.1.13",
     "tsc-watch": "^4.0.0",
     "tsyringe": "^3.4.0",
-    "typeorm": "^0.2.24",
+    "typeorm": "^0.2.25",
     "typescript": "^3.7.0-beta"
   }
 }
